@@ -5,8 +5,6 @@
 class Controller_TicketTool
 {
 
-    // TODO refactor to settings class!
-
     const VERSION = '1.0';
 
     const JIRA_BASE_URL = 'https://bdc.bahag.com';
@@ -48,7 +46,7 @@ class Controller_TicketTool
         // create qr code as png image TODO refactor to QR Service class
 
         $ticketUrl = self::JIRA_BASE_URL . '/browse/' . $ticket->getId();
-        $fileName  = 'tempQrImage.png';
+        $fileName  = 'out/tempQrImage.png';
 
         QRcode::png(
             $ticketUrl,
@@ -65,6 +63,18 @@ class Controller_TicketTool
 
         $pngFile = imagecreatefrompng($fileName);
         imagedestroy($pngFile);
+
+        // export primal information in LaTeX format
+
+        Service_LatexCreator::test();
+
+
+
+
+
+
+
+
     }
 
 }

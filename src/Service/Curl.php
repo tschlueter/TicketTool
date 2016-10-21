@@ -26,6 +26,8 @@ class Service_Curl
             CURLOPT_SSL_VERIFYPEER => 0,
         );
 
+        echo $url . '<br><br>';
+
         $curlConnection = curl_init();
         curl_setopt_array($curlConnection, $curlOptions);
         $result = curl_exec($curlConnection);
