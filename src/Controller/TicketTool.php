@@ -37,7 +37,7 @@ class Controller_TicketTool
             $user,
             $pass
         );
-        echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br>';
+        echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br><hr><br>';
 
         // create qr code as png image
         $ticketUrl = self::JIRA_BASE_URL . '/browse/' . $ticket->getId();
@@ -48,7 +48,7 @@ class Controller_TicketTool
         );
 
         echo 'Successfully created QR code.<br><br>';
-        echo '<img src="' . $fileName . '" style="border: 1px solid #a0a0a0;"><br><br>';
+        echo '<img src="' . $fileName . '" style="border: 1px solid #a0a0a0;"><br><br><hr><br>';
 
 
 
