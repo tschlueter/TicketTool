@@ -2,7 +2,7 @@
 /**
  * A tool for printing tickets.
  */
-class TicketTool
+class Controller_TicketTool
 {
 
     /**
@@ -29,7 +29,7 @@ class TicketTool
             die('Please specify GET-Parameters [ticket][user][pass] for the tool to operate.');
         }
 
-        Service_JiraTicketImporter::test(
+        $ticket = Service_JiraTicketImporter::get(
             $ticket,
             $user,
             $pass

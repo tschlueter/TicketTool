@@ -3,4 +3,4 @@
 require_once( 'src/Autoloader.php' );
 
 Autoloader::init();
-TicketTool::main();
+Controller_TicketTool::main();

@@ -6,33 +6,23 @@ class Service_JiraTicketImporter
 {
 
     /**
-     * Tests the functionality.
+     * Requests one ticket and returns the rendered model.
      *
-     * @param string $ticket The ID of the ticket to stream.
+     * @param string $ticket
+     * @param string $user
+     * @param string $pass
      */
-    public static function test($ticket, $user, $pass)
+    public static function get($ticket, $user, $pass)
     {
-        echo 'Test ticket importing<br>';
-
-        $curlOptions = array(
-            CURLOPT_URL            => 'https://bdc.bahag.com/rest/api/latest/issue/' . $ticket,
-            CURLOPT_USERPWD        => $user . ':' . $pass,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HEADER         => 0,
-            CURLOPT_TIMEOUT        => 4,
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_SSL_VERIFYPEER => 0,
+        $response = Service_Curl::get(
+            Controller_TicketTool::JIRA_BASE_URL . '/rest/api/latest/issue/' . $ticket,
+            $user,
+            $pass
         );
 
-        $curlConnection = curl_init();
-        curl_setopt_array($curlConnection, $curlOptions);
-        if (!($result = curl_exec($curlConnection)))
-        {
-            trigger_error(curl_error($curlConnection));
-        }
-        curl_close($curlConnection);
+        $json = json_decode($response);
 
-        echo $result;
+        var_export($json);
     }
 
 }
