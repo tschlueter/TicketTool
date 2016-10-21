@@ -65,15 +65,12 @@ class Controller_TicketTool
         imagedestroy($pngFile);
 
         // export primal information in LaTeX format
-        Service_LatexCreator::test();
+        if (false) {
+            Service_LatexCreator::test();
+        }
 
-
-
-
-
-
-
-
+        // export primal information in pdf format
+        Service_PdfCreator::test();
     }
 
 }
