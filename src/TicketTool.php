@@ -11,37 +11,29 @@ class TicketTool
     const JIRA_BASE_URL = "https://bdc.bahag.com";
 
     /**
-     * @var string
-     */
-    public static $user = null;
-
-    /**
-     * @var string
-     */
-    public static $pass = null;
-
-    /**
-     * @var string
-     */
-    public static $ticket = null;
-
-    /**
      * The application's entry point.
      */
     public static function main()
     {
-        echo 'Welcome!<br><br>';
+        echo 'Welcome to the TicketTool!<br><br>';
 
-        self::$ticket = $_GET['ticket'];
-        self::$user   = $_GET['user'];
-        self::$pass   = $_GET['pass'];
+        $ticket = (array_key_exists('ticket', $_GET) ? $_GET['ticket'] : null);
+        $user   = (array_key_exists('user',   $_GET) ? $_GET['user']   : null);
+        $pass   = (array_key_exists('pass',   $_GET) ? $_GET['pass']   : null);
 
-        JiraTicketImporter::test(
-            self::$ticket,
-            self::$user,
-            self::$pass
+        if (
+                $ticket == null
+            ||  $user   == null
+            ||  $pass   == null
+        ) {
+            die('Please specify GET-Parameters [ticket][user][pass] for the tool to operate.');
+        }
+
+        Service_JiraTicketImporter::test(
+            $ticket,
+            $user,
+            $pass
         );
-
 
 
 

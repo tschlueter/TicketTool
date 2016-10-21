@@ -1,6 +1,6 @@
 <?php
 /**
- * Offers PSR-0 autoloading.
+ * Offers simple PSR-0 autoloading.
  */
 class Autoloader
 {
@@ -22,17 +22,14 @@ class Autoloader
     {
         echo 'Test [' . $className . ']<br>';
 
-        $className = ltrim($className, '\\');
-        $fileName  = 'src' . DIRECTORY_SEPARATOR;
+        $fileName = (
+                'src'
+            .   DIRECTORY_SEPARATOR
+            .   str_replace('_', DIRECTORY_SEPARATOR, $className)
+            .   '.php'
+        );
 
-        if ($lastNsPos = strrpos($className, '\\')) {
-            $namespace = substr($className, 0, $lastNsPos);
-            $className = substr($className, $lastNsPos + 1);
-            $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-        }
-        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-
-        echo 'FileName [' . $fileName . ']<br>';
+        echo 'FileName [' . $fileName . ']<br><br>';
 
         require_once($fileName);
     }
