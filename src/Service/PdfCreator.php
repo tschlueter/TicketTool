@@ -7,8 +7,12 @@ class Service_PdfCreator
 
     /**
      * Tests the functionality.
+     *
+     * @param string $ticketId
+     * @param string $ticketTitle
+     * @param string $imageFileName
      */
-    public static function test($ticketId, $ticketTitle)
+    public static function test($ticketId, $ticketTitle, $imageFileName)
     {
         $pdfOutName = 'out/pdfTest.pdf';
 
@@ -27,6 +31,7 @@ class Service_PdfCreator
         $fontSizeTitle = 25.0;
 
         $ticketTitleLineHeight = 30.0;
+        $distanceImageY = 20.0;
 
 
 
@@ -53,12 +58,17 @@ class Service_PdfCreator
         $pdf->SetFont('Arial', '', $fontSizeTitle);
         $pdf->MultiCell($pageWidth  - 2 * $borderX, $ticketTitleLineHeight, $ticketTitle, 0.0, 'C');
 
+        $pdf->SetX(0.0);
+        $imageSize = getimagesize($imageFileName);
+        $pdf->Image(
+            $imageFileName,
+            ($pageWidth - $imageSize[0]) / 2,
+            $pdf->GetY() + $distanceImageY,
+            $imageSize[0],
+            $imageSize[1]
+        );
 
-        //$pdf->Line(0.0, 0.0, $pageWidth, $pageHeight);
-
-
-
-        $pdf->Output('I' /* 'F' */, $pdfOutName);
+        $pdf->Output('F', $pdfOutName);
     }
 
 }
