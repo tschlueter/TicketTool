@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Handles the import of ticket information from JIRA.
  */

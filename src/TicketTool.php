@@ -1,5 +1,4 @@
 <?php
-
 /**
  * A tool for printing tickets.
  */

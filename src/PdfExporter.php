@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Handles the PDF export.
  */
