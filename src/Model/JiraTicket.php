@@ -2,7 +2,7 @@
 /**
  * Represents the primal information of one JIRA ticket.
  */
-class JiraTicket
+class Model_JiraTicket
 {
 
     /**

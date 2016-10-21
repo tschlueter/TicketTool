@@ -5,17 +5,16 @@
 class Controller_TicketTool
 {
 
-    /**
-     * @var string
-     */
-    const JIRA_BASE_URL = "https://bdc.bahag.com";
+    const VERSION = '1.0';
+
+    const JIRA_BASE_URL = 'https://bdc.bahag.com';
 
     /**
      * The application's entry point.
      */
     public static function main()
     {
-        echo 'Welcome to the TicketTool!<br><br>';
+        echo 'BAHAG JIRA TicketTool v.' . self::VERSION . '<br><br>';
 
         $ticket = (array_key_exists('ticket', $_GET) ? $_GET['ticket'] : null);
         $user   = (array_key_exists('user',   $_GET) ? $_GET['user']   : null);
@@ -35,6 +34,9 @@ class Controller_TicketTool
             $pass
         );
 
+        echo 'Picked ticket [' . $ticket->getId() . '] with title [' . $ticket->getTitle() . ']<br><br>';
+
+        //$qrImage = Service_
 
 
     }
