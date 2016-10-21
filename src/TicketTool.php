@@ -1,21 +1,21 @@
 <?php
 
+/**
+ * A tool for printing tickets.
+ */
+class TicketTool
+{
+
     /**
-     * A tool for printing tickets.
+     * The application's entry point.
      */
-    class TicketTool
+    public static function main()
     {
-
-        /**
-         * The application's entry point.
-         */
-        public static function main()
-        {
-            echo 'Welcome!';
+        echo 'Welcome!';
 
 
 
-
-        }
 
     }
+
+}
