@@ -33,16 +33,15 @@ class TicketTool
     {
         echo 'Welcome!<br><br>';
 
+        self::$ticket = $_GET['ticket'];
         self::$user   = $_GET['user'];
         self::$pass   = $_GET['pass'];
-        self::$ticket = $_GET['ticket'];
 
-        JiraTicketImporter::test(self::$ticket);
-
-
-
-
-
+        JiraTicketImporter::test(
+            self::$ticket,
+            self::$user,
+            self::$pass
+        );
 
 
 
