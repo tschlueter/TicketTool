@@ -22,12 +22,14 @@ class Service_LatexCreator
 
         file_put_contents($fileNameTexOut, $data);
 
+        @unlink('out/latexTest.pdf');
+
         // render to pdf
 
         $command = 'pdflatex -output-directory=out ' . $fileNameTexOut . ' ';
         $output = shell_exec($command);
 
-        echo 'Latex generation output is [' . $output . ']<br><br><hr><br>';
+        echo 'Latex generation output is <pre>' . $output . ']</pre><br><br><hr><br>';
     }
 
 }

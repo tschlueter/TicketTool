@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
-\usepackage[dvips]{graphicx}
 
-\usepackage{times}
+\usepackage[dvips]{graphicx}
+\usepackage{verbatim}
 
 \pagestyle{empty}
 
@@ -21,6 +21,8 @@
 \newcommand{\xtitleE}{Mobil: 2041521915}
 \newcommand{\xtitleF}{eMail: tux@tuxhausen.tx}
 \newcommand{\xtitleG}{Phone: 2041521915}
+
+
 %
 %  The PGP keys are printed in a tiny little font along the bottom
 %  edge of the card.  If you come up with a better way to fit them in,
@@ -37,12 +39,23 @@
 %
 \begin{document}
 \setlength{\unitlength}{1mm}
+
+
+
+
+
+
 \begin{picture}(178,253)(-7,-1)
 
   % Vert ticks along the bottom
   \put(0,-1){\line(0,-1){3}}
   \put(89,-1){\line(0,-1){3}}
   \put(179,-1){\line(0,-1){3}}
+
+
+
+
+
 
   % Vert ticks along the top
   \put(0,255){\line(0,1){3}}
@@ -57,6 +70,7 @@
     \put(-1,51){\line(-1,0){3}}
     \put(180,51){\line(1,0){3}}
     \multiput(0,0)(89,0){2}{%
+
       \begin{picture}(89,51)(0,0)
     %
     %  Line across the top of the card.
@@ -80,11 +94,19 @@
     % For two keys
         %\put(5,8){\textsf{\pgpfont \xpgpkeyA}}
         %\put(5,6){\textsf{\pgpfont \xpgpkeyB}}
-        %\put(5,4){\textsf{\pgpfont \xpgpkeyC}}    % For three keys
+        %\put(5,4){\textsf{\pgpfont \xpgpkeyC}}
+
+    % For three keys
 
     %  Line across the bottom of the card.
     %
         \put(3,3){\line(1,0){83}}
+
+
       \end{picture}}}
+
+
 \end{picture}
+
+
 \end{document}

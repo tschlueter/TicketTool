@@ -2,7 +2,7 @@
 /**
  * Handles the PDF export.
  */
-class Service_PdfExporter
+class Service_PdfCreator
 {
 
     /**
@@ -10,6 +10,9 @@ class Service_PdfExporter
      */
     public static function test()
     {
+        echo 'Starting PDF creation.';
+
+
 
 
 
