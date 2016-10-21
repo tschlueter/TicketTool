@@ -18,10 +18,8 @@ class Autoloader
      *
      * @param string $className The name of the class to autoload.
      */
-    private static function autoload($className)
+    public static function autoload($className)
     {
-        echo 'Test [' . $className . ']<br>';
-
         $fileName = (
                 'src'
             .   DIRECTORY_SEPARATOR
@@ -29,8 +27,7 @@ class Autoloader
             .   '.php'
         );
 
-        echo 'FileName [' . $fileName . ']<br><br>';
-
+        /** @noinspection PhpIncludeInspection */
         require_once($fileName);
     }
 
