@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.21)  21 OCT 2016 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.10.21)  21 OCT 2016 17:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -68,7 +68,7 @@ LaTeX Font Info:    ... okay on input line 40.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
 
-Overfull \hbox (17.56639pt too wide) in paragraph at lines 106--107
+Overfull \hbox (17.56639pt too wide) in paragraph at lines 109--110
 [][] 
  []
 
@@ -87,7 +87,7 @@ Here is how much of TeX's memory you used:
  25i,7n,27p,213b,167s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c
 :/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on out/latexTest.pdf (1 page, 20984 bytes).
+Output written on out/latexTest.pdf (1 page, 21006 bytes).
 PDF statistics:
  16 PDF objects out of 1000 (max. 8388607)
  10 compressed objects within 1 object stream

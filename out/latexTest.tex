@@ -41,7 +41,6 @@
 
     \setlength{\unitlength}{1mm}
 
-
     \begin{picture}(178,253)(-7,-1)
 
         % Vert ticks along the bottom
@@ -57,51 +56,55 @@
         \put(-1,-1){\line(-1,0){3}}
         \put(180,-1){\line(1,0){3}}
 
-        \multiput(0,0)(0,51.0){5}{%
+        \multiput(0,0)(0,51.0){5}
+        {
 
-        % Ticks on the side of each card
-        \put(-1,51){\line(-1,0){3}}
-        \put(180,51){\line(1,0){3}}
-        \multiput(0,0)(89,0){2}{%
+            % Ticks on the side of each card
+            \put(-1,51){\line(-1,0){3}}
+            \put(180,51){\line(1,0){3}}
+            \multiput(0,0)(89,0){2}
+            {
 
-        \begin{picture}(89,51)(0,0)
+                \begin{picture}(89,51)(0,0)
 
-            %
-            %  Line across the top of the card.
-            %
-            \put(3,48){\line(1,0){83}}
-            %
-            \put(35,42){\scriptsize\xname}
-            \put(30,39){\textsc{\normalsize\xtitleA}}
+                    %
+                    %  Line across the top of the card.
+                    %
+                    \put(3,48){\line(1,0){83}}
+                    %
+                    \put(35,42){\scriptsize\xname}
+                    \put(30,39){\textsc{\normalsize\xtitleA}}
 
-            \put(30,15){\textsc{\tiny\xtitleE}}
-            \put(30,12){\textsc{\tiny\xtitleF}}
-            \put(30,18){\textsc{\tiny\xtitleG}}
+                    \put(30,15){\textsc{\tiny\xtitleE}}
+                    \put(30,12){\textsc{\tiny\xtitleF}}
+                    \put(30,18){\textsc{\tiny\xtitleG}}
 
-            \put(30,30){\textsc{\scriptsize\xtitleB}}
-            \put(30,27){\textsc{\scriptsize\xtitleC}}
-            \put(30,24){\textsc{\scriptsize\xtitleD}}
+                    \put(30,30){\textsc{\scriptsize\xtitleB}}
+                    \put(30,27){\textsc{\scriptsize\xtitleC}}
+                    \put(30,24){\textsc{\scriptsize\xtitleD}}
 
-            % For one key [1.2x]
-            \put(5,6){\textsf{\pgpfont \xpgpkeyA}}
-
-
-
-            % For two keys
-
-            %\put(5,8){\textsf{\pgpfont \xpgpkeyA}}
-
-            %\put(5,6){\textsf{\pgpfont \xpgpkeyB}}
-            %\put(5,4){\textsf{\pgpfont \xpgpkeyC}}
+                    % For one key [1.2x]
+                    \put(5,6){\textsf{\pgpfont \xpgpkeyA}}
 
 
-            % For three keys
 
-            %  Line across the bottom of the card.
-            %
-            \put(3,3){\line(1,0){83}}
+                    % For two keys
 
-        \end{picture}}}
+                    %\put(5,8){\textsf{\pgpfont \xpgpkeyA}}
+
+                    %\put(5,6){\textsf{\pgpfont \xpgpkeyB}}
+                    %\put(5,4){\textsf{\pgpfont \xpgpkeyC}}
+
+
+                    % For three keys
+
+                    %  Line across the bottom of the card.
+                    %
+                    \put(3,3){\line(1,0){83}}
+
+                \end{picture}
+            }
+        }
 
     \end{picture}
 
