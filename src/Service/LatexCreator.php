@@ -12,8 +12,8 @@ class Service_LatexCreator
     {
         // include latex template
 
-        $fileNameTexIn  = 'in/latexTemplate.tx';
-        $fileNameTexOut = 'out/latexTest.tx';
+        $fileNameTexIn  = 'in/latexTemplate.tex';
+        $fileNameTexOut = 'out/latexTest.tex';
 
         $data = file_get_contents($fileNameTexIn);
 
@@ -29,7 +29,7 @@ class Service_LatexCreator
         $command = 'pdflatex -output-directory=out ' . $fileNameTexOut . ' ';
         $output = shell_exec($command);
 
-        echo 'Latex generation output is <pre>' . $output . ']</pre><br><br><hr><br>';
+        echo 'Latex generation output is <pre style="border: 1px solid #a0a0a0; background: #e0e0e0; color: #202020; padding: 10px;">' . $output . '</pre><br><br><hr><br>';
     }
 
 }
