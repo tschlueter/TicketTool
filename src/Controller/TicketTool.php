@@ -14,7 +14,7 @@ class Controller_TicketTool
      */
     public static function main()
     {
-        echo 'BAHAG JIRA TicketTool v.' . self::VERSION . '<br><br>';
+        echo 'BAHAG JIRA TicketTool v.' . self::VERSION . '<br><br><hr><br>';
 
         // browse parameters TODO extract to Parameters model class
 
@@ -37,7 +37,7 @@ class Controller_TicketTool
             $user,
             $pass
         );
-        echo 'Picked ticket [' . $ticket->getId() . '] with title [' . $ticket->getTitle() . ']<br><br>';
+        echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br>';
 
         // create qr code as png image
         $ticketUrl = self::JIRA_BASE_URL . '/browse/' . $ticket->getId();
@@ -48,7 +48,7 @@ class Controller_TicketTool
         );
 
         echo 'Successfully created QR code.<br><br>';
-        echo '<img src="' . $fileName . '">';
+        echo '<img src="' . $fileName . '" style="border: 1px solid #a0a0a0;"><br><br>';
 
 
 
