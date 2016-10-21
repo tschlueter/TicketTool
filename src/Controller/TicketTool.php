@@ -5,9 +5,15 @@
 class Controller_TicketTool
 {
 
+    // TODO refactor to settings class!
+
     const VERSION = '1.0';
 
     const JIRA_BASE_URL = 'https://bdc.bahag.com';
+
+    const QR_IMAGE_SIZE = 10;
+
+    const QR_IMAGE_MARGIN = 0;
 
     /**
      * The application's entry point.
@@ -39,19 +45,26 @@ class Controller_TicketTool
         );
         echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br><hr><br>';
 
-        // create qr code as png image
+        // create qr code as png image TODO refactor to QR Service class
+
         $ticketUrl = self::JIRA_BASE_URL . '/browse/' . $ticket->getId();
-        $fileName  = 'filename.png';
+        $fileName  = 'tempQrImage.png';
+
         QRcode::png(
             $ticketUrl,
-            $fileName
+            $fileName,
+            QR_ECLEVEL_L,
+            self::QR_IMAGE_SIZE,
+            self::QR_IMAGE_MARGIN
         );
 
-        echo 'Successfully created QR code.<br><br>';
-        echo '<img src="' . $fileName . '" style="border: 1px solid #a0a0a0;"><br><br><hr><br>';
+        echo 'Successfully created QR code:<br><br>';
+        echo '<img src="' . $fileName . '" style="border: 0px solid #a0a0a0;"><br><br><hr><br>';
 
+        // read png from file and close it afterwards
 
-
+        $pngFile = imagecreatefrompng($fileName);
+        imagedestroy($pngFile);
     }
 
 }
