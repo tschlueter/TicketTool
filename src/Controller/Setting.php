@@ -36,4 +36,32 @@ class Controller_Setting
     /** The page measuring unit for all specified dimensions. */
     const PDF_PAGE_UNIT = 'pt';
 
+    const PDF_FONT_FACE = 'Arial';
+    /** Font size for 'ticket details' */
+    const PDF_FONT_SIZE_DETAILS = 12.5;
+    /** Font size for 'ticket id' */
+    const PDF_FONT_SIZE_ID = 27.5;
+    /** Font size for 'ticket title' */
+    const PDF_FONT_SIZE_TITLE = 22.5;
+
+    /** Offset x for all texts. */
+    const PDF_TEXT_BORDER_X = 10.0;
+    /** Offset y for all texts. */
+    const PDF_TEXT_BORDER_Y = 10.0;
+
+    /** Offset x for the rect. */
+    const PDF_RECT_BORDER_X = 0.0;
+    /** Offset y for the rect. */
+    const PDF_RECT_BORDER_Y = 0.0;
+
+    /** Y offset of the ticket id. */
+    const PDF_OFFSET_TICKET_ID_Y = 15.0;
+    /** Offset y for the ticket title. */
+    const PDF_OFFSET_TICKET_TITLE_Y = 30.0;
+    /** Y offset for the qr code image. */
+    const PDF_OFFSET_IMAGE_Y = 20.0;
+
+    /** Height of the ticket title block element. */
+    const PDF_TICKET_TITLE_BLOCK_HEIGHT = 30.0;
+
 }

@@ -5,24 +5,6 @@
 class Service_PdfExporter
 {
 
-    const RECT_BORDER_X             = 0.0;
-    const RECT_BORDER_Y             = 0.0;
-
-    const TEXT_BORDER_X             = 10.0;
-    const TEXT_BORDER_Y             = 10.0;
-
-    const FONT_FACE                 = 'Arial';
-
-    const FONT_SIZE_ID              = 27.5;
-    const FONT_SIZE_TITLE           = 22.5;
-    const FONT_SIZE_DETAILS         = 12.5;
-
-    const TICKET_TITLE_BLOCK_HEIGHT = 30.0;
-    const OFFSET_IMAGE_Y            = 20.0;
-
-    const OFFSET_TICKET_ID_Y        = 15.0;
-    const OFFSET_TICKET_TITLE_Y     = 30.0;
-
     /**
      * @var FPDF
      */
@@ -68,59 +50,12 @@ class Service_PdfExporter
     {
         $this->_pdf->AddPage();
 
-
-
-
-        //draw border
-        $this->_pdf->Rect(
-            self::RECT_BORDER_X,
-            self::RECT_BORDER_Y,
-            $this->_pdf->GetPageWidth()  - 2 * self::RECT_BORDER_X,
-            $this->_pdf->GetPageHeight() - 2 * self::RECT_BORDER_Y
-        );
-
-
-        // draw image
-        $this->_pdf->SetXY(0.0, 0.0);
-        $imageSize = getimagesize($imageFileName);
-        $this->_pdf->Image(
-            $imageFileName,
-            ($this->_pdf->GetPageWidth() - $imageSize[0]) / 2,
-            self::OFFSET_IMAGE_Y,
-            $imageSize[0],
-            $imageSize[1]
-        );
-
-        // draw ID
-        $this->_pdf->SetXY(0.0, 0.0);
-        $this->_pdf->SetFont(self::FONT_FACE, 'B', self::FONT_SIZE_ID);
-        $titleWidth = $this->_pdf->GetStringWidth($ticketId);
-        $this->_pdf->Text(
-            ($this->_pdf->GetPageWidth() - $titleWidth) / 2,
-            ($this->_pdf->GetPageHeight() / 2) + self::OFFSET_TICKET_ID_Y,
-            $ticketId
-        );
-
-        // draw title
-        $this->_pdf->SetXY(0.0, ($this->_pdf->GetPageHeight() / 2) + self::OFFSET_TICKET_TITLE_Y);
-        $this->_pdf->SetFont(self::FONT_FACE, '', self::FONT_SIZE_TITLE);
-        $this->_pdf->MultiCell($this->_pdf->GetPageWidth(), self::TICKET_TITLE_BLOCK_HEIGHT, $ticketTitle, 0.0, 'C');
-
-        // draw type
-        $this->_pdf->SetXY(0.0, 0.0);
-        $this->_pdf->SetFont(self::FONT_FACE, '', self::FONT_SIZE_DETAILS);
-        //$titleWidth = $this->_pdf->GetStringWidth($ticketId);
-        $this->_pdf->Text(self::TEXT_BORDER_X, $this->_pdf->GetPageHeight() - self::TEXT_BORDER_Y, $ticketType);
-
-        // draw estimation
-        $this->_pdf->SetXY(0.0, 0.0);
-        $this->_pdf->SetFont(self::FONT_FACE, '', self::FONT_SIZE_DETAILS);
-        $estimationWidth = $this->_pdf->GetStringWidth($ticketEstimation);
-        $this->_pdf->Text(
-            $this->_pdf->GetPageWidth() - self::TEXT_BORDER_X - $estimationWidth,
-            $this->_pdf->GetPageHeight() - self::TEXT_BORDER_Y,
-            $ticketEstimation
-        );
+        $this->_drawBorder();
+        $this->_drawImage($imageFileName);
+        $this->_drawTicketId($ticketId);
+        $this->_drawTicketTitle($ticketTitle);
+        $this->_drawTicketType($ticketType);
+        $this->_drawTicketEstimation($ticketEstimation);
     }
 
     /**
@@ -132,6 +67,97 @@ class Service_PdfExporter
 
         Controller_TicketTool::DEBUG_LOG('Successfully created pdf file <b>[<a href="' . $this->_pdfFileName . '" target="_blank">' . $this->_pdfFileName . '</a>]</b>');
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
+    }
+
+    /**
+     * Draws a border around the page.
+     */
+    private function _drawBorder()
+    {
+        $this->_pdf->Rect(
+            Controller_Setting::PDF_RECT_BORDER_X,
+            Controller_Setting::PDF_RECT_BORDER_Y,
+            $this->_pdf->GetPageWidth()  - 2 * Controller_Setting::PDF_RECT_BORDER_X,
+            $this->_pdf->GetPageHeight() - 2 * Controller_Setting::PDF_RECT_BORDER_Y
+        );
+    }
+
+    /**
+     * Draws the QR code image.
+     *
+     * @param string $imageFileName
+     */
+    private function _drawImage($imageFileName)
+    {
+        $this->_pdf->SetXY(0.0, 0.0);
+        $imageSize = getimagesize($imageFileName);
+        $this->_pdf->Image(
+            $imageFileName,
+            ($this->_pdf->GetPageWidth() - $imageSize[0]) / 2,
+            Controller_Setting::PDF_OFFSET_IMAGE_Y,
+            $imageSize[0],
+            $imageSize[1]
+        );
+    }
+
+    /**
+     * Draws the ticket ID as the headline of the PDF.
+     *
+     * @param string $ticketId
+     */
+    private function _drawTicketId($ticketId)
+    {
+        $this->_pdf->SetXY(0.0, 0.0);
+        $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, 'B', Controller_Setting::PDF_FONT_SIZE_ID);
+        $titleWidth = $this->_pdf->GetStringWidth($ticketId);
+        $this->_pdf->Text(
+            ($this->_pdf->GetPageWidth() - $titleWidth) / 2,
+            ($this->_pdf->GetPageHeight() / 2) + Controller_Setting::PDF_OFFSET_TICKET_ID_Y,
+            $ticketId
+        );
+    }
+
+    /**
+     * Draws the ticket title as the content text of the PDF.
+     *
+     * @param string $ticketTitle
+     */
+    private function _drawTicketTitle($ticketTitle)
+    {
+        $this->_pdf->SetXY(0.0, ($this->_pdf->GetPageHeight() / 2) + Controller_Setting::PDF_OFFSET_TICKET_TITLE_Y);
+        $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_TITLE);
+        $this->_pdf->MultiCell($this->_pdf->GetPageWidth(), Controller_Setting::PDF_TICKET_TITLE_BLOCK_HEIGHT, $ticketTitle, 0.0, 'C');
+    }
+
+    /**
+     * Draws the ticket type into the PDF.
+     *
+     * @param string $ticketType
+     */
+    private function _drawTicketType($ticketType)
+    {
+        $this->_pdf->SetXY(0.0, 0.0);
+        $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_DETAILS);
+        //$titleWidth = $this->_pdf->GetStringWidth($ticketId);
+        $this->_pdf->Text(Controller_Setting::PDF_TEXT_BORDER_X, $this->_pdf->GetPageHeight() - Controller_Setting::PDF_TEXT_BORDER_Y, $ticketType);
+    }
+
+    /**
+     * Draws the ticket estimation into the PDF.
+     *
+     * @param string $ticketEstimation
+     */
+    private function _drawTicketEstimation($ticketEstimation)
+    {
+        // draw estimation
+        $this->_pdf->SetXY(0.0, 0.0);
+        $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_DETAILS);
+        $estimationWidth = $this->_pdf->GetStringWidth($ticketEstimation);
+        $this->_pdf->Text(
+            $this->_pdf->GetPageWidth() - Controller_Setting::PDF_TEXT_BORDER_X - $estimationWidth,
+            $this->_pdf->GetPageHeight() - Controller_Setting::PDF_TEXT_BORDER_Y,
+            $ticketEstimation
+        );
     }
 
 }
