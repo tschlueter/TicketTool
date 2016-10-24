@@ -16,37 +16,50 @@ class Controller_TicketTool
     /**
      * @var string The user name coming from the url.
      */
-    private static $_user;
+    private $_user;
 
     /**
      * @var string The password coming from the url.
      */
-    private static $_pass;
+    private $_pass;
 
     /**
      * @var Service_PdfExport
      */
-    private static $pdfExportService;
+    private $_pdfExportService;
+
+    /**
+     * The unchanged default constructor.
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * The application's entry point.
      */
-    public static function main()
+    public function run()
     {
         Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION);
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
+
 
 
         // TODO implement fancy XML upload button
         $ticketId = (array_key_exists('ticket', $_GET) ? $_GET['ticket'] : null);
 
 
-        self::_parseUrlParameters();
-        self::_createOutputDirectories();
 
-        self::$pdfExportService = new Service_PdfExport(date('Y_m_d_H-i-s'));
-        self::_streamAndExportTicket($ticketId);
-        self::$pdfExportService->createAndSavePdf();
+        $this->_parseUrlParameters();
+        $this->_createOutputDirectories();
+
+        $this->_pdfExportService = new Service_PdfExport(date('Y_m_d_H-i-s'));
+
+        for ($i = 0; $i < 10; $i++) {
+            $this->_streamAndExportTicket($ticketId);
+        }
+
+        $this->_pdfExportService->createAndSavePdf();
 
         Controller_TicketTool::DEBUG_LOG('Done.');
     }
@@ -69,23 +82,23 @@ class Controller_TicketTool
      * Parses url parameters 'user' and 'pass'.
      * Quits the program if one of them are missing.
      */
-    private static function _parseUrlParameters()
+    private function _parseUrlParameters()
     {
-        self::$_user = (array_key_exists('user',   $_GET) ? $_GET['user']   : null);
-        self::$_pass = (array_key_exists('pass',   $_GET) ? $_GET['pass']   : null);
+        $this->_user = (array_key_exists('user', $_GET) ? $_GET['user'] : null);
+        $this->_pass = (array_key_exists('pass', $_GET) ? $_GET['pass'] : null);
 
         if (
-                self::$_user == null
-            ||  self::$_pass == null
+                $this->_user == null
+            ||  $this->_pass == null
         ) {
-            die('Please specify GET-Parameters [user][pass] for the tool to operate.');
+            die('Please specify GET-Parameters [user][pass] with the JIRA credentials for the tool to operate.');
         }
     }
 
     /**
      * Creates all output directories 'tmp' and 'pdf' recursively.
      */
-    private static function _createOutputDirectories()
+    private function _createOutputDirectories()
     {
         // create output directories
         @mkdir(Controller_Setting::PATH_OUT_PDF, 0777, true);
@@ -97,13 +110,13 @@ class Controller_TicketTool
      *
      * @param string $ticketId
      */
-    private static function _streamAndExportTicket($ticketId)
+    private function _streamAndExportTicket($ticketId)
     {
         // pick ticket
         $ticket = Service_JiraTicketImporter::get(
             $ticketId,
-            self::$_user,
-            self::$_pass
+            $this->_user,
+            $this->_pass
         );
         Controller_TicketTool::DEBUG_LOG(
             'ticket        [<b>' . $ticket->getId()         . '</b>]<br>'
@@ -132,7 +145,7 @@ class Controller_TicketTool
         }
 
         // export ticket information in pdf format
-        self::$pdfExportService->createPage(
+        $this->_pdfExportService->createPage(
             $ticket->getId(),
             $ticket->getTitle(),
             $ticket->getType(),
