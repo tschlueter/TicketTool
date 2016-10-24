@@ -2,7 +2,7 @@
 /**
  * Manages PDF generation.
  */
-class Service_PdfExporter
+class Service_PdfExport
 {
 
     /**
@@ -61,7 +61,7 @@ class Service_PdfExporter
     /**
      * Saves the generated PDF to disk.
      */
-    public function exportPdf()
+    public function createAndSavePdf()
     {
         $this->_pdf->Output('F', $this->_pdfFileName);
 
