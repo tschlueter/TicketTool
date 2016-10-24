@@ -1,11 +1,16 @@
 <?php
 /**
  * A tool for printing tickets.
+ *
+ * TODO ASAP Print ticket type and ticket estimation.
+ * TODO ASAP Refactor
+ * TODO ASAP Implement XML import.
+ *
  */
 class Controller_TicketTool
 {
 
-    const VERSION = '1.0';
+    const VERSION = '0.1a';
 
     const DEBUG_OUT = true;
 
@@ -72,6 +77,8 @@ class Controller_TicketTool
             $ticket->getTitle(),
             $imageFileName
         );
+
+        if (Controller_TicketTool::DEBUG_OUT) echo 'Done.<br><br>';
     }
 
 }
