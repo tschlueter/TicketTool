@@ -2,13 +2,12 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Revise all refactoring TODOs.
  * TODO ASAP Print ticket type and ticket estimation.
  * TODO ASAP Implement XML import.
  * TODO HIGH Handle long titles with excessed lengths.
  * TODO HIGH Increase QR-Code image size.
- * TODO INIT Refactor
  * TODO INIT Implement cut marks?
+ * TODO LOW  Refactor
  * TODO LOW  Settings switch for border drawing?
  */
 class Controller_TicketTool
@@ -37,8 +36,8 @@ class Controller_TicketTool
         }
 
         // create output directories
-        @mkdir('out/pdf', 0777, true);
-        @mkdir('out/tmp', 0777, true);
+        @mkdir(Controller_Setting::PATH_OUT_PDF, 0777, true);
+        @mkdir(Controller_Setting::PATH_OUT_TMP, 0777, true);
 
         // pick ticket
 
@@ -57,9 +56,7 @@ class Controller_TicketTool
 
         // create qr code as png image TODO refactor to QR Service class
 
-        // TODO extract all output paths to constants!
-
-        $imageFileName  = 'out/tmp/tempQrImage.png';
+        $imageFileName  = Controller_Setting::PATH_OUT_TMP . 'tempQrImage.png';
 
         QRcode::png(
             $ticket->getId(),
@@ -79,12 +76,15 @@ class Controller_TicketTool
         }
 
         // export primal information in pdf format
-        $pdfCreator = new Service_PdfCreator();
-        $pdfCreator->export(
+        $pdfCreator = new Service_PdfExporter(date('Y_m_d_H-i-s'));
+        $pdfCreator->createPage(
             $ticket->getId(),
             $ticket->getTitle(),
+            $ticket->getType(),
+            $ticket->getEstimation(),
             $imageFileName
         );
+        $pdfCreator->exportPdf();
 
         Controller_TicketTool::DEBUG_LOG('Done.');
     }

@@ -13,12 +13,16 @@ class Controller_Setting
 
     /** The image size for the QR code to create. */
     const QR_IMAGE_SIZE = 6;
-
     /** The margin offset size for the QR code to create. */
     const QR_IMAGE_MARGIN = 0;
 
     /** The number of seconds per hour. */
     const SECONDS_PER_HOUR = 3600;
+
+    /** The output path for all pdf files. */
+    const PATH_OUT_PDF = 'out/pdf/';
+    /** The output path for all temporary files. */
+    const PATH_OUT_TMP = 'out/tmp/';
 
     /** The debug switch for enabling log output to the frontend. */
     const DEBUG_ENABLE_LOGS = true;
