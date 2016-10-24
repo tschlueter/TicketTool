@@ -19,7 +19,8 @@ class Controller_TicketTool
      */
     public static function main()
     {
-        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION . '<br><br><hr><br>';
+        Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION);
+        Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
         // browse parameters TODO extract to Parameters model class
 
@@ -46,7 +47,11 @@ class Controller_TicketTool
             $user,
             $pass
         );
-        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br><hr><br>';
+        Controller_TicketTool::DEBUG_LOG(
+            'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>'
+            . 'with title [<b>' . $ticket->getTitle() . '</b>]'
+        );
+        Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
         // create qr code as png image TODO refactor to QR Service class
 
@@ -61,8 +66,9 @@ class Controller_TicketTool
             Controller_Setting::QR_IMAGE_MARGIN
         );
 
-        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Successfully created QR code:<br><br>';
-        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo '<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;"><br><br><hr><br>';
+        Controller_TicketTool::DEBUG_LOG('Successfully created QR code:');
+        Controller_TicketTool::DEBUG_LOG('<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;">');
+        Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
         // export primal information in LaTeX format
         if (Controller_Setting::DEBUG_TEST_LATEX) {
@@ -77,7 +83,21 @@ class Controller_TicketTool
             $imageFileName
         );
 
-        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Done.<br><br>';
+        Controller_TicketTool::DEBUG_LOG('Done.');
+    }
+
+    /**
+     * Logs the specified message to the frontend output.
+     *
+     * @param string  $msg
+     * @param boolean $appendLineBreak
+     */
+    public static function DEBUG_LOG($msg, $appendLineBreak = true)
+    {
+        if (Controller_Setting::DEBUG_ENABLE_LOGS)
+        {
+            echo $msg . ($appendLineBreak ? '<br>' : '');
+        }
     }
 
 }

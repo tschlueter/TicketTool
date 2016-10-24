@@ -25,14 +25,8 @@ class Service_PdfCreator
         $dimension   = 'A6';
         $orientation = 'P';
 
-        $pageWidth  = 297.64;
-        $pageHeight = 420.94;
-
         $borderX = 0.0;
         $borderY = 0.0;
-
-        $offsetTicketIdY    = ( $pageHeight / 2 ) + 15.0;
-        $offsetTicketTitleY = ( $pageHeight / 2 ) + 30.0;
 
         $fontSizeId    = 27.5;
         $fontSizeTitle = 22.5;
@@ -40,8 +34,19 @@ class Service_PdfCreator
         $ticketTitleLineHeight = 30.0;
         $distanceImageY        = 20.0;
 
+        $offsetTicketIdY    = 15.0;
+        $offsetTicketTitleY = 30.0;
+
+
+
         // A6 dimensions are 297.64, 420.94
         $pdf = new FPDF($orientation, 'pt', $dimension);
+
+        $pageWidth  = $pdf->GetPageWidth();  // 297.64;
+        $pageHeight = $pdf->GetPageHeight(); // 420.94;
+
+        $ticketIdY    = ( $pageHeight / 2 ) + $offsetTicketIdY;
+        $ticketTitleY = ( $pageHeight / 2 ) + $offsetTicketTitleY;
 
         $pdf->AddPage();
 
@@ -71,20 +76,21 @@ class Service_PdfCreator
 
         $pdf->SetXY(0.0, 0.0);
         $titleWidth = $pdf->GetStringWidth($ticketId);
-        $pdf->Text(($pageWidth - $titleWidth) / 2, $offsetTicketIdY, $ticketId);
+        $pdf->Text(($pageWidth - $titleWidth) / 2, $ticketIdY, $ticketId);
 
         // draw title
 
         $pdf->SetFont('Arial', '', $fontSizeTitle);
 
-        $pdf->SetXY(0.0, $offsetTicketTitleY);
+        $pdf->SetXY(0.0, $ticketTitleY);
         $pdf->MultiCell($pageWidth, $ticketTitleLineHeight, $ticketTitle, 0.0, 'C');
 
         // save as file
 
         $pdf->Output('F', $pdfOutName);
 
-        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Successfully created pdf file <b>[' . $pdfOutName . ']</b><br><br><hr><br>';
+        Controller_TicketTool::DEBUG_LOG('Successfully created pdf file <b>[' . $pdfOutName . ']</b>');
+        Controller_TicketTool::DEBUG_LOG('<hr>', false);
     }
 
     private function createPdf()

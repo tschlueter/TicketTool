@@ -26,13 +26,13 @@ class Controller_Setting
     const QR_IMAGE_MARGIN = 0;
 
     /**
-     * The debug switch for testing the LaTeX implementation.
-     */
-    const DEBUG_TEST_LATEX = false;
-
-    /**
      * The debug switch for enabling log output to the frontend.
      */
     const DEBUG_ENABLE_LOGS = true;
+
+    /**
+     * The debug switch for testing the LaTeX implementation.
+     */
+    const DEBUG_TEST_LATEX = false;
 
 }
