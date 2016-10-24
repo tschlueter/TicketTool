@@ -28,7 +28,7 @@ class Service_JiraTicketImporter
             $ticketId,
             $json->fields->summary,
             $json->fields->issuetype->name,
-            $json->fields->timeestimate / Controller_Setting::SECONDS_PER_HOUR
+            ($json->fields->timeestimate / Controller_Setting::SECONDS_PER_HOUR) . 'h'
         );
     }
 
