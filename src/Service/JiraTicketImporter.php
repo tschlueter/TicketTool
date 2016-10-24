@@ -26,7 +26,9 @@ class Service_JiraTicketImporter
 
         return new Model_JiraTicket(
             $ticketId,
-            $json->fields->summary
+            $json->fields->summary,
+            $json->fields->issuetype->name,
+            $json->fields->timeestimate / Controller_Setting::SECONDS_PER_HOUR
         );
     }
 

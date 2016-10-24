@@ -5,6 +5,8 @@
 class Service_PdfCreator
 {
 
+
+
     public function __construct()
     {
     }
@@ -22,11 +24,11 @@ class Service_PdfCreator
 
         $pdfOutName = 'out/pdf/' . $ticketId . '.pdf';
 
-        $dimension   = 'A6';
-        $orientation = 'P';
+        $rectBorderX = 0.0;
+        $rectBorderY = 0.0;
 
-        $borderX = 0.0;
-        $borderY = 0.0;
+        $textBorderX = 10.0;
+        $textBorderY = 10.0;
 
         $fontSizeId    = 27.5;
         $fontSizeTitle = 22.5;
@@ -39,8 +41,11 @@ class Service_PdfCreator
 
 
 
-        // A6 dimensions are 297.64, 420.94
-        $pdf = new FPDF($orientation, 'pt', $dimension);
+        $pdf = new FPDF(
+            Controller_Setting::PDF_PAGE_ORIENTATION,
+            Controller_Setting::PDF_PAGE_UNIT,
+            Controller_Setting::PDF_PAGE_DIMENSION
+        );
 
         $pageWidth  = $pdf->GetPageWidth();  // 297.64;
         $pageHeight = $pdf->GetPageHeight(); // 420.94;
@@ -51,10 +56,10 @@ class Service_PdfCreator
         $pdf->AddPage();
 
         $pdf->Rect(
-            $borderX,
-            $borderY,
-            $pageWidth  - 2 * $borderX,
-            $pageHeight - 2 * $borderY
+            $rectBorderX,
+            $rectBorderY,
+            $pageWidth  - 2 * $rectBorderX,
+            $pageHeight - 2 * $rectBorderY
         );
 
 

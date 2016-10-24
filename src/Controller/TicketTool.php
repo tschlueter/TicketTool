@@ -2,12 +2,12 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP Revise all refactoring TODOs.
  * TODO ASAP Print ticket type and ticket estimation.
- * TODO ASAP Refactor
  * TODO ASAP Implement XML import.
- * TODO HIGH Revise all refactoring TODOs.
  * TODO HIGH Handle long titles with excessed lengths.
  * TODO HIGH Increase QR-Code image size.
+ * TODO INIT Refactor
  * TODO INIT Implement cut marks?
  * TODO LOW  Settings switch for border drawing?
  */
@@ -48,14 +48,17 @@ class Controller_TicketTool
             $pass
         );
         Controller_TicketTool::DEBUG_LOG(
-            'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>'
-            . 'with title [<b>' . $ticket->getTitle() . '</b>]'
+            'ticket        [<b>' . $ticket->getId()         . '</b>]<br>'
+            . 'title       [<b>' . $ticket->getTitle()      . '</b>]<br>'
+            . 'issue type  [<b>' . $ticket->getType()       . '</b>]<br>'
+            . 'estimation  [<b>' . $ticket->getEstimation() . '</b>]'
         );
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
         // create qr code as png image TODO refactor to QR Service class
 
-        //$ticketUrl = self::JIRA_BASE_URL . '/browse/' . $ticket->getId();
+        // TODO extract all output paths to constants!
+
         $imageFileName  = 'out/tmp/tempQrImage.png';
 
         QRcode::png(
