@@ -17,7 +17,7 @@ class Service_JiraTicketImporter
     public static function get($ticketId, $user, $pass)
     {
         $response = Service_Curl::get(
-            Controller_TicketTool::JIRA_BASE_URL . '/rest/api/latest/issue/' . $ticketId,
+            Controller_Setting::JIRA_BASE_URL . '/rest/api/latest/issue/' . $ticketId,
             $user,
             $pass
         );

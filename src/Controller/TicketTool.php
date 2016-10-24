@@ -5,35 +5,21 @@
  * TODO ASAP Print ticket type and ticket estimation.
  * TODO ASAP Refactor
  * TODO ASAP Implement XML import.
- * TODO ASAP Extract constants to settings.
- * TODO ASAP Refactor to out/pdf
- * TODO ASAP Refactor to out/tmp
  * TODO HIGH Revise all refactoring TODOs.
  * TODO HIGH Handle long titles with excessed lengths.
- * TODO HIGH Größerer QR-Code.
- * TODO LOW  Border 0px ?
+ * TODO HIGH Increase QR-Code image size.
+ * TODO INIT Implement cut marks?
+ * TODO LOW  Settings switch for border drawing?
  */
 class Controller_TicketTool
 {
-
-    const VERSION = '0.1a';
-
-    const DEBUG_OUT = true;
-
-    const TEST_LATEX = true;
-
-    const JIRA_BASE_URL = 'https://bdc.bahag.com';
-
-    const QR_IMAGE_SIZE = 6;
-
-    const QR_IMAGE_MARGIN = 0;
 
     /**
      * The application's entry point.
      */
     public static function main()
     {
-        if (self::DEBUG_OUT) echo 'BAHAG JIRA TicketTool v.' . self::VERSION . '<br><br><hr><br>';
+        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION . '<br><br><hr><br>';
 
         // browse parameters TODO extract to Parameters model class
 
@@ -60,7 +46,7 @@ class Controller_TicketTool
             $user,
             $pass
         );
-        if (self::DEBUG_OUT) echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br><hr><br>';
+        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Picked ticket [<b>' . $ticket->getId() . '</b>]<br>with title [<b>' . $ticket->getTitle() . '</b>]<br><br><hr><br>';
 
         // create qr code as png image TODO refactor to QR Service class
 
@@ -71,15 +57,15 @@ class Controller_TicketTool
             $ticket->getId(),
             $imageFileName,
             QR_ECLEVEL_L,
-            self::QR_IMAGE_SIZE,
-            self::QR_IMAGE_MARGIN
+            Controller_Setting::QR_IMAGE_SIZE,
+            Controller_Setting::QR_IMAGE_MARGIN
         );
 
-        if (self::DEBUG_OUT) echo 'Successfully created QR code:<br><br>';
-        if (self::DEBUG_OUT) echo '<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;"><br><br><hr><br>';
+        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Successfully created QR code:<br><br>';
+        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo '<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;"><br><br><hr><br>';
 
         // export primal information in LaTeX format
-        if (self::TEST_LATEX) {
+        if (Controller_Setting::DEBUG_TEST_LATEX) {
             Service_LatexCreator::test();
         }
 
@@ -91,7 +77,7 @@ class Controller_TicketTool
             $imageFileName
         );
 
-        if (Controller_TicketTool::DEBUG_OUT) echo 'Done.<br><br>';
+        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Done.<br><br>';
     }
 
 }

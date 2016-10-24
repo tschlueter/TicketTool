@@ -28,8 +28,8 @@ class Service_PdfCreator
         $pageWidth  = 297.64;
         $pageHeight = 420.94;
 
-        $borderX = 1.0;
-        $borderY = 1.0;
+        $borderX = 0.0;
+        $borderY = 0.0;
 
         $offsetTicketIdY    = ( $pageHeight / 2 ) + 15.0;
         $offsetTicketTitleY = ( $pageHeight / 2 ) + 30.0;
@@ -84,7 +84,7 @@ class Service_PdfCreator
 
         $pdf->Output('F', $pdfOutName);
 
-        if (Controller_TicketTool::DEBUG_OUT) echo 'Successfully created pdf file <b>[' . $pdfOutName . ']</b><br><br><hr><br>';
+        if (Controller_Setting::DEBUG_ENABLE_LOGS) echo 'Successfully created pdf file <b>[' . $pdfOutName . ']</b><br><br><hr><br>';
     }
 
     private function createPdf()
