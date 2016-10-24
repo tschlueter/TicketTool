@@ -5,6 +5,10 @@
 class Service_PdfCreator
 {
 
+    public function __construct()
+    {
+    }
+
     /**
      * Tests the functionality.
      *
@@ -12,11 +16,14 @@ class Service_PdfCreator
      * @param string $ticketTitle
      * @param string $imageFileName
      */
-    public static function test($ticketId, $ticketTitle, $imageFileName)
+    public function export($ticketId, $ticketTitle, $imageFileName)
     {
-        $pdfOutName = 'out/pdfTest.pdf';
-
         // TODO refactor to constants!
+
+        $pdfOutName = 'out/pdf/' . $ticketId . '.pdf';
+
+        $dimension   = 'A6';
+        $orientation = 'P';
 
         $pageWidth  = 297.64;
         $pageHeight = 420.94;
@@ -33,15 +40,10 @@ class Service_PdfCreator
         $ticketTitleLineHeight = 30.0;
         $distanceImageY        = 20.0;
 
-
-
         // A6 dimensions are 297.64, 420.94
-        $pdf = new FPDF('P', 'pt', 'A6');
+        $pdf = new FPDF($orientation, 'pt', $dimension);
 
         $pdf->AddPage();
-
-        $pdf->SetFont('Arial', 'B', $fontSizeId);
-
 
         $pdf->Rect(
             $borderX,
@@ -49,6 +51,7 @@ class Service_PdfCreator
             $pageWidth  - 2 * $borderX,
             $pageHeight - 2 * $borderY
         );
+
 
         // draw image
 
@@ -64,14 +67,17 @@ class Service_PdfCreator
 
         // draw ID
 
+        $pdf->SetFont('Arial', 'B', $fontSizeId);
+
         $pdf->SetXY(0.0, 0.0);
         $titleWidth = $pdf->GetStringWidth($ticketId);
         $pdf->Text(($pageWidth - $titleWidth) / 2, $offsetTicketIdY, $ticketId);
 
         // draw title
 
-        $pdf->SetXY(0.0, $offsetTicketTitleY);
         $pdf->SetFont('Arial', '', $fontSizeTitle);
+
+        $pdf->SetXY(0.0, $offsetTicketTitleY);
         $pdf->MultiCell($pageWidth, $ticketTitleLineHeight, $ticketTitle, 0.0, 'C');
 
         // save as file
@@ -79,6 +85,12 @@ class Service_PdfCreator
         $pdf->Output('F', $pdfOutName);
 
         if (Controller_TicketTool::DEBUG_OUT) echo 'Successfully created pdf file <b>[' . $pdfOutName . ']</b><br><br><hr><br>';
+    }
+
+    private function createPdf()
+    {
+
+
     }
 
 }

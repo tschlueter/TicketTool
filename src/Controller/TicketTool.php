@@ -5,7 +5,13 @@
  * TODO ASAP Print ticket type and ticket estimation.
  * TODO ASAP Refactor
  * TODO ASAP Implement XML import.
- *
+ * TODO ASAP Extract constants to settings.
+ * TODO ASAP Refactor to out/pdf
+ * TODO ASAP Refactor to out/tmp
+ * TODO HIGH Revise all refactoring TODOs.
+ * TODO HIGH Handle long titles with excessed lengths.
+ * TODO HIGH Größerer QR-Code.
+ * TODO LOW  Border 0px ?
  */
 class Controller_TicketTool
 {
@@ -13,6 +19,8 @@ class Controller_TicketTool
     const VERSION = '0.1a';
 
     const DEBUG_OUT = true;
+
+    const TEST_LATEX = true;
 
     const JIRA_BASE_URL = 'https://bdc.bahag.com';
 
@@ -41,6 +49,10 @@ class Controller_TicketTool
             die('Please specify GET-Parameters [ticket][user][pass] for the tool to operate.');
         }
 
+        // create output directories
+        @mkdir('out/pdf', 0777, true);
+        @mkdir('out/tmp', 0777, true);
+
         // pick ticket
 
         $ticket = Service_JiraTicketImporter::get(
@@ -53,7 +65,7 @@ class Controller_TicketTool
         // create qr code as png image TODO refactor to QR Service class
 
         //$ticketUrl = self::JIRA_BASE_URL . '/browse/' . $ticket->getId();
-        $imageFileName  = 'out/tempQrImage.png';
+        $imageFileName  = 'out/tmp/tempQrImage.png';
 
         QRcode::png(
             $ticket->getId(),
@@ -67,12 +79,13 @@ class Controller_TicketTool
         if (self::DEBUG_OUT) echo '<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;"><br><br><hr><br>';
 
         // export primal information in LaTeX format
-        if (false) {
+        if (self::TEST_LATEX) {
             Service_LatexCreator::test();
         }
 
         // export primal information in pdf format
-        Service_PdfCreator::test(
+        $pdfCreator = new Service_PdfCreator();
+        $pdfCreator->export(
             $ticket->getId(),
             $ticket->getTitle(),
             $imageFileName
