@@ -23,12 +23,28 @@ class Service_JiraTicketImporter
         );
 
         $json = json_decode($response);
+/*
+        echo '<pre>';
+        var_export($json);
+        echo '</pre>';
+*/
+        $actualId           = $json->key;
+        $title              = $json->fields->summary;
+        $type               = $json->fields->issuetype->name;
+        $originalEstimation = '';
+
+        if (array_key_exists('originalEstimateSeconds', $json->fields->timetracking)) {
+            $originalEstimation = (
+                $json->fields->timetracking->originalEstimateSeconds / Controller_Setting::SECONDS_PER_HOUR
+            )
+            . 'h';
+        }
 
         return new Model_JiraTicket(
-            $ticketId,
-            $json->fields->summary,
-            $json->fields->issuetype->name,
-            ($json->fields->timetracking->originalEstimateSeconds / Controller_Setting::SECONDS_PER_HOUR) . 'h'
+            $actualId,
+            $title,
+            $type,
+            $originalEstimation
         );
     }
 

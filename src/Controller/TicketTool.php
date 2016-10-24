@@ -2,7 +2,6 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Implement XML import.
  * TODO ASAP Modern templating engine for phtml file?
  * TODO ASAP Fancy UI for uploading XML.
  * TODO HIGH Handle long titles with excessed lengths.
@@ -43,23 +42,14 @@ class Controller_TicketTool
         Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION);
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
-
-
-        // TODO implement fancy XML upload button
-        $ticketId = (array_key_exists('ticket', $_GET) ? $_GET['ticket'] : null);
-
-
-
         $this->_parseUrlParameters();
         $this->_createOutputDirectories();
 
-        $this->_pdfExportService = new Service_PdfExport(date('Y_m_d_H-i-s'));
+        $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(
+            Controller_Setting::PATH_OUT_TMP . 'SearchRequest.xml'
+        );
 
-        for ($i = 0; $i < 10; $i++) {
-            $this->_streamAndExportTicket($ticketId);
-        }
-
-        $this->_pdfExportService->createAndSavePdf();
+        $this->_streamAndExportTickets($ticketIds);
 
         Controller_TicketTool::DEBUG_LOG('Done.');
     }
@@ -106,6 +96,22 @@ class Controller_TicketTool
     }
 
     /**
+     * Performs batch processing for the given ticket-IDs.
+     *
+     * @param string[] $ticketIds
+     */
+    private function _streamAndExportTickets($ticketIds)
+    {
+        $this->_pdfExportService = new Service_PdfExport(date('Y_m_d_H-i-s'));
+
+        foreach ($ticketIds as $ticketId) {
+            $this->_streamAndExportTicket($ticketId);
+        }
+
+        $this->_pdfExportService->createAndSavePdf();
+    }
+
+    /**
      * Streams all required information for the given ticket-ID, creates the QR-code and assembles the PDF.
      *
      * @param string $ticketId
@@ -124,10 +130,9 @@ class Controller_TicketTool
             . 'issue type  [<b>' . $ticket->getType()       . '</b>]<br>'
             . 'estimation  [<b>' . $ticket->getEstimation() . '</b>]'
         );
-        Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
         // create qr code as png image
-        $imageFileName = Controller_Setting::PATH_OUT_TMP . 'tempQrImage.png';
+        $imageFileName = Controller_Setting::PATH_OUT_TMP . 'qr_code_' . $ticketId . '.png';
         QRcode::png(
             $ticket->getId(),
             $imageFileName,
