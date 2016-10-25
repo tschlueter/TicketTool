@@ -2,9 +2,9 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Modern templating engine for phtml files?
- * TODO ASAP Fancy UI for uploading XML.
- * TODO HIGH Handle long titles with excessed lengths.
+ * TODO ASAP Implement templating engine ('Smarty') for phtml files?
+ * TODO ASAP Fancy UI for uploading XML (jQuery).
+ * TODO HIGH Handle/Test long titles with excessed lengths.
  */
 class Controller_TicketTool
 {
