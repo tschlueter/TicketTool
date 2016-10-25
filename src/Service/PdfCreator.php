@@ -2,7 +2,7 @@
 /**
  * Manages PDF generation.
  */
-class Service_PdfExport
+class Service_PdfCreator
 {
 
     /**
@@ -50,7 +50,10 @@ class Service_PdfExport
     {
         $this->_pdf->AddPage();
 
-        $this->_drawBorder();
+        if (Controller_Setting::PDF_DRAW_BORDER) {
+            $this->_drawBorder();
+        }
+
         $this->_drawImage($imageFileName);
         $this->_drawTicketId($ticketId);
         $this->_drawTicketTitle($ticketTitle);

@@ -2,12 +2,11 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Modern templating engine for phtml file?
+ * TODO HIGH Improve setting/centering for all objects in the PDF.
+ *
+ * TODO ASAP Modern templating engine for phtml files?
  * TODO ASAP Fancy UI for uploading XML.
  * TODO HIGH Handle long titles with excessed lengths.
- * TODO HIGH Improve setting/centering for all objects in the PDF.
- * TODO INIT Increase QR-Code image size.
- * TODO LOW  Settings switch for border drawing?
  */
 class Controller_TicketTool
 {
@@ -23,16 +22,9 @@ class Controller_TicketTool
     private $_pass;
 
     /**
-     * @var Service_PdfExport
+     * @var Service_PdfCreator
      */
     private $_pdfExportService;
-
-    /**
-     * The unchanged default constructor.
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * The application's entry point.
@@ -102,7 +94,7 @@ class Controller_TicketTool
      */
     private function _streamAndExportTickets($ticketIds)
     {
-        $this->_pdfExportService = new Service_PdfExport(date('Y_m_d_H-i-s'));
+        $this->_pdfExportService = new Service_PdfCreator(date('Y_m_d_H-i-s'));
 
         foreach ($ticketIds as $ticketId) {
             $this->_streamAndExportTicket($ticketId);
@@ -125,10 +117,10 @@ class Controller_TicketTool
             $this->_pass
         );
         Controller_TicketTool::DEBUG_LOG(
-            'ticket        [<b>' . $ticket->getId()         . '</b>]<br>'
-            . 'title       [<b>' . $ticket->getTitle()      . '</b>]<br>'
-            . 'issue type  [<b>' . $ticket->getType()       . '</b>]<br>'
-            . 'estimation  [<b>' . $ticket->getEstimation() . '</b>]'
+            'Picked JIRA ticket [<b>' . $ticket->getId()         . '</b>]'
+            . 'title            [<b>' . $ticket->getTitle()      . '</b>]'
+            . 'issue type       [<b>' . $ticket->getType()       . '</b>]'
+            . 'estimation       [<b>' . $ticket->getEstimation() . '</b>]'
         );
 
         // create qr code as png image
@@ -140,10 +132,10 @@ class Controller_TicketTool
             Controller_Setting::QR_IMAGE_SIZE,
             Controller_Setting::QR_IMAGE_MARGIN
         );
-        Controller_TicketTool::DEBUG_LOG('Successfully created QR code:');
+        Controller_TicketTool::DEBUG_LOG('Successfully created QR code.');
+/*
         Controller_TicketTool::DEBUG_LOG('<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;">');
-        Controller_TicketTool::DEBUG_LOG('<hr>', false);
-
+*/
         // export ticket information in LaTeX format
         if (Controller_Setting::DEBUG_TEST_LATEX) {
             Service_LatexCreator::test();
@@ -157,6 +149,9 @@ class Controller_TicketTool
             $ticket->getEstimation(),
             $imageFileName
         );
+
+        Controller_TicketTool::DEBUG_LOG('Successfully created PDF page.');
+        Controller_TicketTool::DEBUG_LOG('<hr>', false);
     }
 
 }

@@ -36,8 +36,9 @@ class Service_JiraTicketImporter
         if (array_key_exists('originalEstimateSeconds', $json->fields->timetracking)) {
             $originalEstimation = (
                 $json->fields->timetracking->originalEstimateSeconds / Controller_Setting::SECONDS_PER_HOUR
-            )
-            . 'h';
+            ) . 'h';
+        } else {
+            $originalEstimation = 'unestimated';
         }
 
         return new Model_JiraTicket(

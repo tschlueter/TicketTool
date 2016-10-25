@@ -12,7 +12,7 @@ class Controller_Setting
     const JIRA_BASE_URL = 'https://bdc.bahag.com';
 
     /** The image size for the QR code to create. */
-    const QR_IMAGE_SIZE = 6;
+    const QR_IMAGE_SIZE = 8;
     /** The margin offset size for the QR code to create. */
     const QR_IMAGE_MARGIN = 0;
 
@@ -36,6 +36,10 @@ class Controller_Setting
     /** The page measuring unit for all specified dimensions. */
     const PDF_PAGE_UNIT = 'pt';
 
+    /** Whether to draw a border around each page or not. */
+    const PDF_DRAW_BORDER = false;
+
+    /** The font to use for all texts in the pdf. */
     const PDF_FONT_FACE = 'Arial';
     /** Font size for 'ticket details' */
     const PDF_FONT_SIZE_DETAILS = 12.5;
