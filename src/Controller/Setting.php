@@ -59,13 +59,11 @@ class Controller_Setting
     const PDF_RECT_BORDER_Y = 0.0;
 
     /** Y offset of the ticket id. */
-    const PDF_OFFSET_TICKET_ID_Y = 15.0;
+    const PDF_OFFSET_TICKET_ID_Y = 20.0;
     /** Offset y for the ticket title. */
-    const PDF_OFFSET_TICKET_TITLE_Y = 30.0;
-    /** Y offset for the qr code image. */
-    const PDF_OFFSET_IMAGE_Y = 20.0;
+    const PDF_OFFSET_TICKET_TITLE_Y = 35.0;
 
     /** Height of the ticket title block element. */
-    const PDF_TICKET_TITLE_BLOCK_HEIGHT = 30.0;
+    const PDF_TICKET_TITLE_BLOCK_HEIGHT = 25.0;
 
 }

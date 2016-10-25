@@ -2,8 +2,6 @@
 /**
  * A tool for printing tickets.
  *
- * TODO HIGH Improve setting/centering for all objects in the PDF.
- *
  * TODO ASAP Modern templating engine for phtml files?
  * TODO ASAP Fancy UI for uploading XML.
  * TODO HIGH Handle long titles with excessed lengths.

@@ -68,7 +68,11 @@ class Service_PdfCreator
     {
         $this->_pdf->Output('F', $this->_pdfFileName);
 
-        Controller_TicketTool::DEBUG_LOG('Successfully created pdf file <b>[<a href="' . $this->_pdfFileName . '" target="_blank">' . $this->_pdfFileName . '</a>]</b>');
+        Controller_TicketTool::DEBUG_LOG(
+            'Successfully created pdf file <b>[<a href="' . $this->_pdfFileName . '" target="_blank">'
+            . $this->_pdfFileName
+            . '</a>]</b>'
+        );
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
     }
 
@@ -96,8 +100,8 @@ class Service_PdfCreator
         $imageSize = getimagesize($imageFileName);
         $this->_pdf->Image(
             $imageFileName,
-            ($this->_pdf->GetPageWidth() - $imageSize[0]) / 2,
-            Controller_Setting::PDF_OFFSET_IMAGE_Y,
+            ($this->_pdf->GetPageWidth()  - $imageSize[0]) / 2,
+            (($this->_pdf->GetPageHeight() / 2) - $imageSize[1]) / 2,
             $imageSize[0],
             $imageSize[1]
         );
@@ -129,7 +133,13 @@ class Service_PdfCreator
     {
         $this->_pdf->SetXY(0.0, ($this->_pdf->GetPageHeight() / 2) + Controller_Setting::PDF_OFFSET_TICKET_TITLE_Y);
         $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_TITLE);
-        $this->_pdf->MultiCell($this->_pdf->GetPageWidth(), Controller_Setting::PDF_TICKET_TITLE_BLOCK_HEIGHT, $ticketTitle, 0.0, 'C');
+        $this->_pdf->MultiCell(
+            $this->_pdf->GetPageWidth(),
+            Controller_Setting::PDF_TICKET_TITLE_BLOCK_HEIGHT,
+            $ticketTitle,
+            0.0,
+            'C'
+        );
     }
 
     /**
@@ -141,8 +151,11 @@ class Service_PdfCreator
     {
         $this->_pdf->SetXY(0.0, 0.0);
         $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_DETAILS);
-        //$titleWidth = $this->_pdf->GetStringWidth($ticketId);
-        $this->_pdf->Text(Controller_Setting::PDF_TEXT_BORDER_X, $this->_pdf->GetPageHeight() - Controller_Setting::PDF_TEXT_BORDER_Y, $ticketType);
+        $this->_pdf->Text(
+            Controller_Setting::PDF_TEXT_BORDER_X,
+            $this->_pdf->GetPageHeight() - Controller_Setting::PDF_TEXT_BORDER_Y,
+            $ticketType
+        );
     }
 
     /**

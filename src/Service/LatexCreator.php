@@ -1,6 +1,6 @@
 <?php
 /**
- * Manages CURL calls.
+ * Manages LaTeX generation.
  */
 class Service_LatexCreator
 {
