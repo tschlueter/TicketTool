@@ -2,6 +2,12 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP Implement AJAX requests for life console logging.
+ * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
+ * TODO ASAP Add TypeScript for JS generation.
+ * TODO ASAP Enable CLI support.
+ * TODO ASAP Enable single or multiple ticket print support.
+ * TODO ASAP Add SASS for css generation.
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO HIGH Handle/Test long titles with excessed lengths.
@@ -32,7 +38,7 @@ class Controller_TicketTool
 
 
 
-        $this->_testSmarty();
+        // $this->_testSmarty();
 
 
 
