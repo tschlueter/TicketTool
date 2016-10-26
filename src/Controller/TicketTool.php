@@ -29,6 +29,13 @@ class Controller_TicketTool
      */
     public function run()
     {
+
+
+
+        $this->_testSmarty();
+
+
+
         Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION);
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
@@ -116,9 +123,9 @@ class Controller_TicketTool
         );
         Controller_TicketTool::DEBUG_LOG(
             'Picked JIRA ticket [<b>' . $ticket->getId()         . '</b>]'
-            . 'title            [<b>' . $ticket->getTitle()      . '</b>]'
-            . 'issue type       [<b>' . $ticket->getType()       . '</b>]'
-            . 'estimation       [<b>' . $ticket->getEstimation() . '</b>]'
+            . ' title           [<b>' . $ticket->getTitle()      . '</b>]'
+            . ' issue type      [<b>' . $ticket->getType()       . '</b>]'
+            . ' estimation      [<b>' . $ticket->getEstimation() . '</b>]'
         );
 
         // create qr code as png image
@@ -150,6 +157,24 @@ class Controller_TicketTool
 
         Controller_TicketTool::DEBUG_LOG('Successfully created PDF page.');
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
+    }
+
+    /**
+     * Tests the smarty template engine.
+     */
+    private function _testSmarty()
+    {
+        // create object
+        $smarty = new Smarty;
+
+        // assign some content. This would typically come from
+        // a database or other source, but we'll use static
+        // values for the purpose of this example.
+        $smarty->assign('name', 'george smith');
+        $smarty->assign('address', '45th & Harris');
+
+        // display it
+        $smarty->display('template/default/index.tpl');
     }
 
 }
