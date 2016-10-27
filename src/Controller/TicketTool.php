@@ -6,6 +6,7 @@
  * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
  * TODO ASAP Add TypeScript for JS generation.
  * TODO ASAP Enable CLI support.
+ * TODO ASAP Add PHP-Doc.
  * TODO ASAP Handle special chars.
  * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Improve workflow (Enable URL of XMl etc.)?.
