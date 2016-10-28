@@ -2,26 +2,27 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Implement AJAX requests for life console logging.
- * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
- * TODO ASAP Add TypeScript for JS generation.
  * TODO ASAP Enable CLI support.
+ * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
  * TODO ASAP Add PHP-Doc.
  * TODO ASAP Handle special chars.
- * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Improve workflow (Enable URL of XMl etc.)?.
  * TODO ASAP No need to stream Tickets because all information are stored in the input XML!
  * TODO ASAP Use 'SetAutoPageBreak'?
  * TODO ASAP Add '...' after the n-th line if it exceeds the maximum length.
+ * TODO ASAP Enable single or multiple ticket print support.
+ * TODO ASAP Create webservice that invoked the tool?
  * TODO ASAP Move input XML to in folder!
- * TODO ASAP Create user-store.
+ * TODO ASAP Create user-story.
  * TODO ASAP Limit lines of title.
+ * TODO WEAK Add favicon.
+ * TODO HIGH Package app to one .phar. Enable .phar on webserver?
+ * TODO ASAP Implement AJAX requests for life console logging.
+ * TODO ASAP Add TypeScript for JS generation.
  * TODO ASAP Add SASS for css generation.
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO HIGH Handle/Test long titles with excessed lengths.
- * TODO HIGH Package app to one .phar. Enable .phar on webserver?
- * TODO WEAK Add favicon.
  */
 class Controller_TicketTool
 {
