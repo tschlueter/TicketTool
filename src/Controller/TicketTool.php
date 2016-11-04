@@ -53,6 +53,8 @@ class Controller_TicketTool
         Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION);
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
+        //$this->_testSmarty();
+
         $this->_parseUrlParameters();
         $this->_createOutputDirectories();
 
@@ -179,6 +181,9 @@ class Controller_TicketTool
         // create object
         $smarty = new Smarty;
 
+        $smarty->setTemplateDir('res/smarty/template'  );
+        $smarty->setCompileDir( 'res/smarty/template_c');
+
         // assign some content. This would typically come from
         // a database or other source, but we'll use static
         // values for the purpose of this example.
@@ -186,7 +191,7 @@ class Controller_TicketTool
         $smarty->assign('address', '45th & Harris');
 
         // display it
-        $smarty->display('template/default/index.tpl');
+        $smarty->display('default/index.tpl');
     }
 
 }
