@@ -27,6 +27,7 @@ class Service_PdfCreator
             Controller_Setting::PDF_PAGE_UNIT,
             Controller_Setting::PDF_PAGE_DIMENSION
         );
+        $this->_pdf->SetAutoPageBreak(false);
 
         $this->_pdfFileName = Controller_Setting::PATH_OUT_PDF . $pdfFileName . '.pdf';
     }

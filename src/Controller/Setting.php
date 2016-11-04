@@ -28,6 +28,8 @@ class Controller_Setting
     const DEBUG_ENABLE_LOGS = true;
     /** The debug switch for testing the LaTeX implementation. */
     const DEBUG_TEST_LATEX = false;
+    /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */
+    const DEBUG_SUPERSIZE_ALL_TEXTS = true;
 
     /** The page dimension for the output pdfs. A6 dimensions are 297.64 x 420.94 */
     const PDF_PAGE_DIMENSION = 'A6';
