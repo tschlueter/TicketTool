@@ -21,10 +21,10 @@ class Autoloader
     public static function autoload($className)
     {
         $fileName = (
-                'src'
-            .   DIRECTORY_SEPARATOR
-            .   str_replace('_', DIRECTORY_SEPARATOR, $className)
-            .   '.php'
+            'src'
+            . DIRECTORY_SEPARATOR
+            . str_replace('_', DIRECTORY_SEPARATOR, $className)
+            . '.php'
         );
 
         /** @noinspection PhpIncludeInspection */

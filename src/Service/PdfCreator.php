@@ -32,7 +32,10 @@ class Service_PdfCreator
     }
 
     /**
-     * Tests the functionality.
+     * Adds a new page to the pdf with the specified contents.
+     *
+     * It is MANDATORY that the strings are ISO-8859-1 in order
+     * to operate with FPDF correctly!
      *
      * @param string $ticketId
      * @param string $ticketTitle

@@ -2,19 +2,21 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP Use 'SetAutoPageBreak'?
  * TODO ASAP Enable CLI support.
  * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
  * TODO ASAP Add PHP-Doc.
- * TODO ASAP Handle special chars.
  * TODO ASAP Improve workflow (Enable URL of XMl etc.)?.
  * TODO ASAP No need to stream Tickets because all information are stored in the input XML!
- * TODO ASAP Use 'SetAutoPageBreak'?
  * TODO ASAP Add '...' after the n-th line if it exceeds the maximum length.
  * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Create webservice that invoked the tool?
  * TODO ASAP Move input XML to in folder!
+ * TODO ASAP Remove project to private Git Repo!
+ * TODO ASAP Disable temporary generated image files after PDF creation.
  * TODO ASAP Create user-story.
  * TODO ASAP Limit lines of title.
+ * TODO ASAP Delete generated pdfs after creation?
  * TODO WEAK Add favicon.
  * TODO HIGH Package app to one .phar. Enable .phar on webserver?
  * TODO ASAP Implement AJAX requests for life console logging.
@@ -23,6 +25,7 @@
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO HIGH Handle/Test long titles with excessed lengths.
+ * TODO INIT Use COMPOSER for loading libs and class autoloading (Symfony component!)
  */
 class Controller_TicketTool
 {
@@ -47,13 +50,6 @@ class Controller_TicketTool
      */
     public function run()
     {
-
-
-
-        // $this->_testSmarty();
-
-
-
         Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool v.' . Controller_Setting::VERSION);
         Controller_TicketTool::DEBUG_LOG('<hr>', false);
 
@@ -156,9 +152,7 @@ class Controller_TicketTool
             Controller_Setting::QR_IMAGE_MARGIN
         );
         Controller_TicketTool::DEBUG_LOG('Successfully created QR code.');
-/*
-        Controller_TicketTool::DEBUG_LOG('<img src="' . $imageFileName . '" style="border: 0px solid #a0a0a0;">');
-*/
+
         // export ticket information in LaTeX format
         if (Controller_Setting::DEBUG_TEST_LATEX) {
             Service_LatexCreator::test();
@@ -166,10 +160,10 @@ class Controller_TicketTool
 
         // export ticket information in pdf format
         $this->_pdfExportService->createPage(
-            $ticket->getId(),
-            $ticket->getTitle(),
-            $ticket->getType(),
-            $ticket->getEstimation(),
+            utf8_decode($ticket->getId()),
+            utf8_decode($ticket->getTitle()),
+            utf8_decode($ticket->getType()),
+            utf8_decode($ticket->getEstimation()),
             $imageFileName
         );
 
