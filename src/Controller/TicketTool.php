@@ -3,17 +3,17 @@
  * A tool for printing tickets.
  *
  * TODO ASAP Fancy UI for uploading XML (jQuery).
+ * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
  * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Create user-story.
- * TODO LOW  Add PHP-Doc.
- * TODO ASAP Implement AJAX requests for life console logging.
- * TODO ASAP Add TypeScript for JS generation.
- * TODO ASAP Add SASS for css generation.
- * TODO ASAP Implement templating engine ('Smarty') for phtml files?
+ * TODO HIGH Implement AJAX requests for life console logging.
+ * TODO INIT Add TypeScript for JS generation.
+ * TODO INIT Add SASS for css generation.
  * TODO LOW Create webservice that invoked the tool?
  * TODO LOW  Use COMPOSER for loading libs and class autoloading (Symfony component!)
  * TODO LOW  Remove project to private Git Repo!
+ * TODO LOW  Add PHP-Doc and script for its generation.
  * TODO WEAK No need to stream Tickets because all information are stored in the input XML!
  * TODO WEAK Add favicon.
  */
@@ -104,6 +104,14 @@ class Controller_TicketTool
         return $this->_parseParametersFromArray($args);
     }
 
+    /**
+     * Parses the keys 'user' and 'pass' from the specified array.
+     * Dies in case of non existent keys.
+     *
+     * @param array $array
+     *
+     * @return array
+     */
     private function _parseParametersFromArray($array)
     {
         $user = (array_key_exists('user', $array) ? $array['user'] : null);
