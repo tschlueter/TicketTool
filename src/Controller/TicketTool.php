@@ -1,11 +1,8 @@
-s<?php
+<?php
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Disable temporary generated image files after PDF creation.
- * TODO ASAP Group all dirs to settings class.
  * TODO ASAP Enable CLI support.
- *
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
  * TODO ASAP Add '...' after the n-th line if it exceeds the maximum length.
  * TODO ASAP Enable single or multiple ticket print support.

@@ -40,7 +40,7 @@ class Service_TicketTool
         //$this->_testSmarty();
 
         $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(
-            Controller_Setting::PATH_IN_XML . DIRECTORY_SEPARATOR . 'SearchRequest.xml'
+            Controller_Setting::PATH_IN_XML
         );
 
         $this->_streamAndExportTickets($ticketIds);

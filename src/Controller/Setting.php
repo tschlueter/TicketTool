@@ -23,7 +23,7 @@ class Controller_Setting
     const MAX_TITLE_LENGTH = 120;
 
     /** The input path for importing the XML file. */
-    const PATH_IN_XML = 'in';
+    const PATH_IN_XML = 'in/SearchRequest.xml';
     /** The output path for all pdf files. */
     const PATH_OUT_PDF = 'out/pdf/';
     /** The output path for temporary created images. */
