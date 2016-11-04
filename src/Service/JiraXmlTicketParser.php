@@ -27,7 +27,7 @@ class Service_JiraXmlTicketParser
         }
 
         Controller_TicketTool::DEBUG_LOG('Parsed [' . count($ticketIds) . '] ticket-IDs from XML.');
-        Controller_TicketTool::DEBUG_LOG('<hr>', false);
+        Controller_TicketTool::DEBUG_LOG();
 
         return $ticketIds;
     }

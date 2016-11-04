@@ -71,13 +71,14 @@ class Service_PdfCreator
     public function createAndSavePdf()
     {
         $this->_pdf->Output('F', $this->_pdfFileName);
+    }
 
-        Controller_TicketTool::DEBUG_LOG(
-            'Successfully created pdf file <b>[<a href="' . $this->_pdfFileName . '" target="_blank">'
-            . $this->_pdfFileName
-            . '</a>]</b>'
-        );
-        Controller_TicketTool::DEBUG_LOG('<hr>', false);
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->_pdfFileName;
     }
 
     /**

@@ -44,8 +44,6 @@ class Service_TicketTool
         );
 
         $this->_streamAndExportTickets($ticketIds);
-
-        Controller_TicketTool::DEBUG_LOG('Done.');
     }
 
     /**
@@ -53,7 +51,6 @@ class Service_TicketTool
      */
     private function _createOutputDirectories()
     {
-        // create output directories
         @mkdir(Controller_Setting::PATH_OUT_PDF,       0777, true);
         @mkdir(Controller_Setting::PATH_OUT_TMP_LATEX, 0777, true);
         @mkdir(Controller_Setting::PATH_OUT_TMP_IMAGE, 0777, true);
@@ -73,6 +70,14 @@ class Service_TicketTool
         }
 
         $this->_pdfExportService->createAndSavePdf();
+
+        Controller_TicketTool::DEBUG_LOG(
+            'Successfully created pdf file [<a href="' . $this->_pdfExportService->getFileName() . '" target="_blank">'
+            . $this->_pdfExportService->getFileName()
+            . '</a>]'
+        );
+
+        Controller_TicketTool::DEBUG_LOG();
     }
 
     /**
@@ -82,20 +87,18 @@ class Service_TicketTool
      */
     private function _streamAndExportTicket($ticketId)
     {
-        // pick ticket
         $ticket = Service_JiraTicketImporter::get(
             $ticketId,
             $this->_user,
             $this->_pass
         );
         Controller_TicketTool::DEBUG_LOG(
-            'Picked JIRA ticket id [<b>' . $ticket->getId()         . '</b>]'
-            . ' title              [<b>' . $ticket->getTitle()      . '</b>]'
-            . ' issue type         [<b>' . $ticket->getType()       . '</b>]'
-            . ' estimation         [<b>' . $ticket->getEstimation() . '</b>]'
+            'Picked JIRA ticket id [' . $ticket->getId()         . ']'
+            . ' title ['              . $ticket->getTitle()      . ']'
+            . ' issue type ['         . $ticket->getType()       . ']'
+            . ' estimation ['         . $ticket->getEstimation() . ']'
         );
 
-        // create qr code as png image
         $imageFileName = Controller_Setting::PATH_OUT_TMP_IMAGE . 'qr_code_' . $ticketId . '.png';
         QRcode::png(
             $ticket->getId(),
@@ -106,12 +109,10 @@ class Service_TicketTool
         );
         Controller_TicketTool::DEBUG_LOG('Successfully created QR code.');
 
-        // export ticket information in LaTeX format
         if (Controller_Setting::DEBUG_TEST_LATEX) {
             Service_LatexCreator::test();
         }
 
-        // export ticket information in pdf format
         $this->_pdfExportService->createPage(
             utf8_decode($ticket->getId()),
             utf8_decode($ticket->getTitle()),
@@ -121,7 +122,7 @@ class Service_TicketTool
         );
 
         Controller_TicketTool::DEBUG_LOG('Successfully created PDF page.');
-        Controller_TicketTool::DEBUG_LOG('<hr>', false);
+        Controller_TicketTool::DEBUG_LOG();
     }
 
     /**
