@@ -88,20 +88,7 @@ class Controller_TicketTool
      */
     private function _parseUrlParameters()
     {
-        $user = (array_key_exists('user', $_GET) ? $_GET['user'] : null);
-        $pass = (array_key_exists('pass', $_GET) ? $_GET['pass'] : null);
-
-        if (
-                $user == null
-            ||  $pass == null
-        ) {
-            die('Please specify GET-Parameters [user][pass] with your JIRA credentials for the tool to operate.');
-        }
-
-        return array(
-            'user' => $user,
-            'pass' => $pass,
-        );
+        return $this->_parseParametersFromArray($_GET);
     }
 
     /**
@@ -112,27 +99,27 @@ class Controller_TicketTool
      */
     private function _parseCliArguments()
     {
-        $args = getopt('user:pass:');
+        $args = getopt('', array('user:', 'pass:'));
 
-        var_export($args);
+        return $this->_parseParametersFromArray($args);
+    }
 
-        die( 'controlled' );
-/*
-        $user = (array_key_exists('user', $_GET) ? $_GET['user'] : null);
-        $pass = (array_key_exists('pass', $_GET) ? $_GET['pass'] : null);
+    private function _parseParametersFromArray($array)
+    {
+        $user = (array_key_exists('user', $array) ? $array['user'] : null);
+        $pass = (array_key_exists('pass', $array) ? $array['pass'] : null);
 
         if (
                 $user == null
             ||  $pass == null
         ) {
-            die('Please specify GET-Parameters [user][pass] with your JIRA credentials for the tool to operate.');
+            die('Please specify parameters [user][pass] with your JIRA credentials for the tool to operate.');
         }
 
         return array(
             'user' => $user,
             'pass' => $pass,
         );
-*/
     }
 
     /**

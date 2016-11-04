@@ -28,6 +28,10 @@ class Service_JiraTicketImporter
         var_export($json);
         echo '</pre>';
 */
+        if ($json == null) {
+            die('ERROR on requesting JIRA API! Please check your credentials.');
+        }
+
         $actualId           = $json->key;
         $title              = $json->fields->summary;
         $type               = $json->fields->issuetype->name;
