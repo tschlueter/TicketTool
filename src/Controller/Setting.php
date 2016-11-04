@@ -19,17 +19,13 @@ class Controller_Setting
     /** The number of seconds per hour. */
     const SECONDS_PER_HOUR = 3600;
 
+    /** The maximum number of characters in the ticket title. */
+    const MAX_TITLE_LENGTH = 120;
+
     /** The output path for all pdf files. */
     const PATH_OUT_PDF = 'out/pdf/';
     /** The output path for all temporary files. */
     const PATH_OUT_TMP = 'out/tmp/';
-
-    /** The debug switch for enabling log output to the frontend. */
-    const DEBUG_ENABLE_LOGS = true;
-    /** The debug switch for testing the LaTeX implementation. */
-    const DEBUG_TEST_LATEX = false;
-    /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */
-    const DEBUG_SUPERSIZE_ALL_TEXTS = true;
 
     /** The page dimension for the output pdfs. A6 dimensions are 297.64 x 420.94 */
     const PDF_PAGE_DIMENSION = 'A6';
@@ -67,5 +63,12 @@ class Controller_Setting
 
     /** Height of the ticket title block element. */
     const PDF_TICKET_TITLE_BLOCK_HEIGHT = 25.0;
+
+    /** The debug switch for enabling log output to the frontend. */
+    const DEBUG_ENABLE_LOGS = true;
+    /** The debug switch for testing the LaTeX implementation. */
+    const DEBUG_TEST_LATEX = false;
+    /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */
+    const DEBUG_SUPERSIZE_TITLE = false;
 
 }

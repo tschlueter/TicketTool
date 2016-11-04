@@ -2,9 +2,6 @@
 /**
  * A tool for printing tickets.
  *
- * TODO HIGH Handle/Test supersized ids and titles with excessed lengths.
- *
- * TODO ASAP Limit lines of title?
  * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
  * TODO ASAP Move input XML to in folder!
  * TODO ASAP Group all dirs to settings class.
@@ -139,10 +136,10 @@ class Controller_TicketTool
             $this->_pass
         );
         Controller_TicketTool::DEBUG_LOG(
-            'Picked JIRA ticket [<b>' . $ticket->getId()         . '</b>]'
-            . ' title           [<b>' . $ticket->getTitle()      . '</b>]'
-            . ' issue type      [<b>' . $ticket->getType()       . '</b>]'
-            . ' estimation      [<b>' . $ticket->getEstimation() . '</b>]'
+            'Picked JIRA ticket id [<b>' . $ticket->getId()         . '</b>]'
+            . ' title              [<b>' . $ticket->getTitle()      . '</b>]'
+            . ' issue type         [<b>' . $ticket->getType()       . '</b>]'
+            . ' estimation         [<b>' . $ticket->getEstimation() . '</b>]'
         );
 
         // create qr code as png image

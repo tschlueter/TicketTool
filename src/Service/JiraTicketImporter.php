@@ -41,6 +41,14 @@ class Service_JiraTicketImporter
             $originalEstimation = 'unestimated';
         }
 
+        if (Controller_Setting::DEBUG_SUPERSIZE_TITLE) {
+            $title .= str_repeat('_SUPERSIZED', 20);
+        }
+
+        if (strlen($title) > Controller_Setting::MAX_TITLE_LENGTH) {
+            $title = substr($title, 0, Controller_Setting::MAX_TITLE_LENGTH) . '...';
+        }
+
         return new Model_JiraTicket(
             $actualId,
             $title,
