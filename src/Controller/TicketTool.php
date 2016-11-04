@@ -3,17 +3,16 @@
  * A tool for printing tickets.
  *
  * TODO ASAP Outsource TicketTool controller class and all it's functionality into a service.
- * TODO ASAP Move input XML to in folder!
+ * TODO ASAP Disable temporary generated image files after PDF creation.
  * TODO ASAP Group all dirs to settings class.
  * TODO ASAP Enable CLI support.
+ *
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
  * TODO ASAP Add '...' after the n-th line if it exceeds the maximum length.
  * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Create webservice that invoked the tool?
- * TODO ASAP Disable temporary generated image files after PDF creation.
  * TODO ASAP Create user-story.
  * TODO LOW  Add PHP-Doc.
- * TODO ASAP Delete generated pdfs after creation?
  * TODO HIGH Package app to one .phar. Enable .phar on webserver?
  * TODO ASAP Implement AJAX requests for life console logging.
  * TODO ASAP Add TypeScript for JS generation.
@@ -57,7 +56,7 @@ class Controller_TicketTool
         $this->_createOutputDirectories();
 
         $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(
-            Controller_Setting::PATH_OUT_TMP . 'SearchRequest.xml'
+            Controller_Setting::PATH_IN_XML . DIRECTORY_SEPARATOR . 'SearchRequest.xml'
         );
 
         $this->_streamAndExportTickets($ticketIds);

@@ -22,6 +22,8 @@ class Controller_Setting
     /** The maximum number of characters in the ticket title. */
     const MAX_TITLE_LENGTH = 120;
 
+    /** The input path for importing the XML file. */
+    const PATH_IN_XML = 'in';
     /** The output path for all pdf files. */
     const PATH_OUT_PDF = 'out/pdf/';
     /** The output path for all temporary files. */
