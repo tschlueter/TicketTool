@@ -101,8 +101,9 @@ class Controller_TicketTool
     private function _createOutputDirectories()
     {
         // create output directories
-        @mkdir(Controller_Setting::PATH_OUT_PDF, 0777, true);
-        @mkdir(Controller_Setting::PATH_OUT_TMP, 0777, true);
+        @mkdir(Controller_Setting::PATH_OUT_PDF,       0777, true);
+        @mkdir(Controller_Setting::PATH_OUT_TMP_LATEX, 0777, true);
+        @mkdir(Controller_Setting::PATH_OUT_TMP_IMAGE, 0777, true);
     }
 
     /**
@@ -142,7 +143,7 @@ class Controller_TicketTool
         );
 
         // create qr code as png image
-        $imageFileName = Controller_Setting::PATH_OUT_TMP . 'qr_code_' . $ticketId . '.png';
+        $imageFileName = Controller_Setting::PATH_OUT_TMP_IMAGE . 'qr_code_' . $ticketId . '.png';
         QRcode::png(
             $ticket->getId(),
             $imageFileName,

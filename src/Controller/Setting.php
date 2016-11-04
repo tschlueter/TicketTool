@@ -26,8 +26,10 @@ class Controller_Setting
     const PATH_IN_XML = 'in';
     /** The output path for all pdf files. */
     const PATH_OUT_PDF = 'out/pdf/';
-    /** The output path for all temporary files. */
-    const PATH_OUT_TMP = 'out/tmp/';
+    /** The output path for temporary created images. */
+    const PATH_OUT_TMP_IMAGE = 'out/tmp/image/';
+    /** The output path for temporary created latex documents. */
+    const PATH_OUT_TMP_LATEX = 'out/tmp/latex/';
 
     /** The page dimension for the output pdfs. A6 dimensions are 297.64 x 420.94 */
     const PDF_PAGE_DIMENSION = 'A6';
@@ -69,7 +71,7 @@ class Controller_Setting
     /** The debug switch for enabling log output to the frontend. */
     const DEBUG_ENABLE_LOGS = true;
     /** The debug switch for testing the LaTeX implementation. */
-    const DEBUG_TEST_LATEX = false;
+    const DEBUG_TEST_LATEX = true;
     /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */
     const DEBUG_SUPERSIZE_TITLE = false;
 

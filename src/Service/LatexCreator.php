@@ -13,7 +13,7 @@ class Service_LatexCreator
         // include latex template
 
         $fileNameTexIn  = 'res/latex/latexTemplate.tex';
-        $fileNameTexOut = Controller_Setting::PATH_OUT_TMP . 'latexTest.tex';
+        $fileNameTexOut = Controller_Setting::PATH_OUT_TMP_LATEX . 'latexTest.tex';
 
         $data = file_get_contents($fileNameTexIn);
 
@@ -22,11 +22,11 @@ class Service_LatexCreator
 
         file_put_contents($fileNameTexOut, $data);
 
-        @unlink(Controller_Setting::PATH_OUT_TMP . 'latexTest.pdf');
+        @unlink(Controller_Setting::PATH_OUT_TMP_LATEX . 'latexTest.pdf');
 
         // render to pdf
 
-        $command = 'pdflatex -output-directory=' . Controller_Setting::PATH_OUT_TMP . ' ' . $fileNameTexOut . ' ';
+        $command = 'pdflatex -output-directory=' . Controller_Setting::PATH_OUT_TMP_LATEX . ' ' . $fileNameTexOut . ' ';
         $output = shell_exec($command);
 
         Controller_TicketTool::DEBUG_LOG(
