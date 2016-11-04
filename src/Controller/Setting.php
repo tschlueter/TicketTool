@@ -71,7 +71,7 @@ class Controller_Setting
     /** The debug switch for enabling log output to the frontend. */
     const DEBUG_ENABLE_LOGS = true;
     /** The debug switch for testing the LaTeX implementation. */
-    const DEBUG_TEST_LATEX = true;
+    const DEBUG_TEST_LATEX = false;
     /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */
     const DEBUG_SUPERSIZE_TITLE = false;
 
