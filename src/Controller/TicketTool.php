@@ -2,8 +2,6 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Enable CLI support.
- *
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
  * TODO ASAP Enable single or multiple ticket print support.
@@ -47,7 +45,7 @@ class Controller_TicketTool
         Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool, CLI-edition, v.' . Controller_Setting::VERSION);
 
         $params = $this->_parseCliArguments();
-        $this->_createAndRunTicketToolService($params);
+        $this->_createAndRunTicketToolService($params, true);
 
         Controller_TicketTool::DEBUG_LOG('Done.');
     }
@@ -62,20 +60,22 @@ class Controller_TicketTool
         Controller_TicketTool::DEBUG_LOG();
 
         $params = $this->_parseUrlParameters();
-        $this->_createAndRunTicketToolService($params);
+        $this->_createAndRunTicketToolService($params, false);
 
         Controller_TicketTool::DEBUG_LOG('Done.');
         Controller_TicketTool::DEBUG_LOG('</pre>');
     }
 
     /**
-     * @param array $params
+     * @param array   $params
+     * @param boolean $cliRequest
      */
-    private function _createAndRunTicketToolService($params)
+    private function _createAndRunTicketToolService($params, $cliRequest)
     {
         $this->_ticketToolService = new Service_TicketTool(
             $params['user'],
-            $params['pass']
+            $params['pass'],
+            $cliRequest
         );
         $this->_ticketToolService->run();
     }

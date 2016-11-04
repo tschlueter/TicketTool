@@ -21,13 +21,15 @@ class Service_TicketTool
     private $_pdfExportService;
 
     /**
-     * @param string $user
-     * @param string $pass
+     * @param string  $user
+     * @param string  $pass
+     * @param boolean $cli
      */
-    public function __construct($user, $pass)
+    public function __construct($user, $pass, $cli)
     {
         $this->_user = $user;
         $this->_pass = $pass;
+        $this->_cli  = $cli;
     }
 
     /**
@@ -71,11 +73,17 @@ class Service_TicketTool
 
         $this->_pdfExportService->createAndSavePdf();
 
-        Controller_TicketTool::DEBUG_LOG(
-            'Successfully created pdf file [<a href="' . $this->_pdfExportService->getFileName() . '" target="_blank">'
-            . $this->_pdfExportService->getFileName()
-            . '</a>]'
-        );
+        if ($this->_cli) {
+            Controller_TicketTool::DEBUG_LOG(
+                'Successfully created pdf file [' . $this->_pdfExportService->getFileName() . ']'
+            );
+        } else {
+            Controller_TicketTool::DEBUG_LOG(
+                'Successfully created pdf file [<a href="' . $this->_pdfExportService->getFileName() . '" target="_blank">'
+                . $this->_pdfExportService->getFileName()
+                . '</a>]'
+            );
+        }
 
         Controller_TicketTool::DEBUG_LOG();
     }
