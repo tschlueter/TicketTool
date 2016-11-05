@@ -2,6 +2,8 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP Outsource user, pass and base-url to external, non versioned file!
+ * TODO ASAP Reset repository.
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
