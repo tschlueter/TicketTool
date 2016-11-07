@@ -7,6 +7,7 @@
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
+ * TODO ASAP Add ASCII art to console output!
  * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Create user-story.
  * TODO HIGH Implement AJAX requests for life console logging.
