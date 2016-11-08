@@ -2,6 +2,7 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
  * TODO ASAP Outsource user, pass and base-url to external, non versioned file!
  * TODO ASAP Reset repository.
  * TODO ASAP Fancy UI for uploading XML (jQuery).
