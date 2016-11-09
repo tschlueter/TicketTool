@@ -5,8 +5,10 @@
 class Controller_Setting
 {
 
+    /** The application title. */
+    const TITLE = 'BAHAG TicketTool';
     /** The version identifier. */
-    const VERSION = '0.1a';
+    const VERSION = '1.0.0 2016-11-09 11:14:00';
 
     /** The base URL of the JIRA service. */
     const JIRA_BASE_URL = 'https://bdc.bahag.com';
@@ -22,6 +24,8 @@ class Controller_Setting
     /** The maximum number of characters in the ticket title. */
     const MAX_TITLE_LENGTH = 120;
 
+    /** The resource path for text files. */
+    const PATH_RES_TXT = 'res/txt';
     /** The input path for importing the XML file. */
     const PATH_IN_XML = 'in/SearchRequest.xml';
     /** The output path for all pdf files. */

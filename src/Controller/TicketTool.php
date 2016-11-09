@@ -2,11 +2,11 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP Outsource user, pass and base-url to external, non versioned file!
+ *
  * TODO ASAP Tool is inoperative if only one single ticket is exported! Fix this!
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
- * TODO ASAP Outsource user, pass and base-url to external, non versioned file!
  * TODO ASAP Reset repository.
- * TODO ASAP Add ASCII art to console output! (s. composer!)
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
@@ -22,7 +22,6 @@
  * TODO LOW  Remove project to private Git Repo!
  * TODO LOW  Add PHP-Doc and script for its generation.
  * TODO WEAK No need to stream Tickets because all information are stored in the input XML!
- * TODO WEAK Add favicon.
  */
 class Controller_TicketTool
 {
@@ -49,7 +48,8 @@ class Controller_TicketTool
      */
     private function _runCliVersion()
     {
-        Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool, CLI-edition, v.' . Controller_Setting::VERSION);
+        $this->_outputAsciiLogo();
+        Controller_TicketTool::DEBUG_LOG(Controller_Setting::TITLE . ', CLI-edition, v.' . Controller_Setting::VERSION);
 
         $params = $this->_parseCliArguments();
         $this->_createAndRunTicketToolService($params, true);
@@ -62,8 +62,19 @@ class Controller_TicketTool
      */
     private function _runWebVersion()
     {
+        $title = Controller_Setting::TITLE . ', WEB-edition, v.' . Controller_Setting::VERSION;
+
+        Controller_TicketTool::DEBUG_LOG('<html>');
+        Controller_TicketTool::DEBUG_LOG('<head>');
+        Controller_TicketTool::DEBUG_LOG('<title>' .  $title . '</title>');
+        Controller_TicketTool::DEBUG_LOG('<meta charset="utf-8" />');
+        Controller_TicketTool::DEBUG_LOG('<link rel="icon"          href="favicon.ico" type="image/x-icon" />');
+        Controller_TicketTool::DEBUG_LOG('<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />');
+        Controller_TicketTool::DEBUG_LOG('</head>');
+        Controller_TicketTool::DEBUG_LOG('<body>');
         Controller_TicketTool::DEBUG_LOG('<pre>');
-        Controller_TicketTool::DEBUG_LOG('BAHAG JIRA TicketTool, WEB-edition, v.' . Controller_Setting::VERSION);
+        $this->_outputAsciiLogo();
+        Controller_TicketTool::DEBUG_LOG($title);
         Controller_TicketTool::DEBUG_LOG();
 
         $params = $this->_parseUrlParameters();
@@ -71,6 +82,8 @@ class Controller_TicketTool
 
         Controller_TicketTool::DEBUG_LOG('Done.');
         Controller_TicketTool::DEBUG_LOG('</pre>');
+        Controller_TicketTool::DEBUG_LOG('</body>');
+        Controller_TicketTool::DEBUG_LOG('</html>');
     }
 
     /**
@@ -135,6 +148,18 @@ class Controller_TicketTool
             'user' => $user,
             'pass' => $pass,
         );
+    }
+
+    /**
+     * Streams external resource containing the logo in ASCII art and outputs it to the console.
+     *
+     * @return void
+     */
+    private static function _outputAsciiLogo()
+    {
+        $asciiLogo = file_get_contents(Controller_Setting::PATH_RES_TXT . DIRECTORY_SEPARATOR . 'logo.txt');
+
+        Controller_TicketTool::DEBUG_LOG($asciiLogo);
     }
 
     /**
