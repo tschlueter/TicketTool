@@ -2,6 +2,7 @@
 /**
  * A tool for printing tickets.
  *
+ * TODO ASAP Tool is inoperative if only one single ticket is exported! Fix this!
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
  * TODO ASAP Outsource user, pass and base-url to external, non versioned file!
  * TODO ASAP Reset repository.
@@ -10,7 +11,9 @@
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
  * TODO ASAP Enable single or multiple ticket print support.
- * TODO ASAP Create user-story.
+ * TODO ASAP Create user-stories how to use it!.
+ * TODO ASAP Enable text input fields for several ticket numbers!
+ * TODO ASAP Enable XML upload field in frontend!
  * TODO HIGH Implement AJAX requests for life console logging.
  * TODO INIT Add TypeScript for JS generation.
  * TODO INIT Add SASS for css generation.
