@@ -2,11 +2,10 @@
 /**
  * A tool for printing tickets.
  *
- * TODO ASAP Outsource user, pass and base-url to external, non versioned file!
- *
  * TODO ASAP Tool is inoperative if only one single ticket is exported! Fix this!
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
  * TODO ASAP Reset repository.
+ * TODO ASAP Use COMPOSER for loading libs and class autoloading (Symfony component!)
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
@@ -17,9 +16,9 @@
  * TODO HIGH Implement AJAX requests for life console logging.
  * TODO INIT Add TypeScript for JS generation.
  * TODO INIT Add SASS for css generation.
- * TODO LOW Create webservice that invoked the tool?
- * TODO LOW  Use COMPOSER for loading libs and class autoloading (Symfony component!)
- * TODO LOW  Remove project to private Git Repo!
+ * TODO INIT Make frontend 3D and responsive?
+ * TODO LOW  Create webservice that invokes the tool?
+ * TODO LOW  Move project to private Git Repo?
  * TODO LOW  Add PHP-Doc and script for its generation.
  * TODO WEAK No need to stream Tickets because all information are stored in the input XML!
  */
@@ -48,10 +47,11 @@ class Controller_TicketTool
      */
     private function _runCliVersion()
     {
+        Controller_TicketTool::DEBUG_LOG();
         $this->_outputAsciiLogo();
         Controller_TicketTool::DEBUG_LOG(Controller_Setting::TITLE . ', CLI-edition, v.' . Controller_Setting::VERSION);
 
-        $params = $this->_parseCliArguments();
+        $params = $this->_parseCredentialsFromSettingsFile();
         $this->_createAndRunTicketToolService($params, true);
 
         Controller_TicketTool::DEBUG_LOG('Done.');
@@ -77,7 +77,7 @@ class Controller_TicketTool
         Controller_TicketTool::DEBUG_LOG($title);
         Controller_TicketTool::DEBUG_LOG();
 
-        $params = $this->_parseUrlParameters();
+        $params = $this->_parseCredentialsFromSettingsFile();
         $this->_createAndRunTicketToolService($params, false);
 
         Controller_TicketTool::DEBUG_LOG('Done.');
@@ -101,47 +101,28 @@ class Controller_TicketTool
     }
 
     /**
-     * Parses url parameters 'user' and 'pass'.
-     * Quits the program if one of them are missing.
+     * Parses the JIRA credentials from the external json settings file.
      *
      * @return array
      */
-    private function _parseUrlParameters()
+    private function _parseCredentialsFromSettingsFile()
     {
-        return $this->_parseParametersFromArray($_GET);
-    }
+        $settingsFile = Controller_Setting::PATH_IN_SETTINGS;
 
-    /**
-     * Parses cli arguments 'user' and 'pass'.
-     * Quits the program if one of them are missing.
-     *
-     * @return array
-     */
-    private function _parseCliArguments()
-    {
-        $args = getopt('', array('user:', 'pass:'));
+        if (!file_exists($settingsFile)) {
+            die('Please specify the json settings file containing your JIRA credentials in the input directory.');
+        }
 
-        return $this->_parseParametersFromArray($args);
-    }
+        $settingsJson = file_get_contents($settingsFile);
+        $settings     = json_decode($settingsJson);
 
-    /**
-     * Parses the keys 'user' and 'pass' from the specified array.
-     * Dies in case of non existent keys.
-     *
-     * @param array $array
-     *
-     * @return array
-     */
-    private function _parseParametersFromArray($array)
-    {
-        $user = (array_key_exists('user', $array) ? $array['user'] : null);
-        $pass = (array_key_exists('pass', $array) ? $array['pass'] : null);
+        $credentials  = $settings->credentials;
 
-        if (
-                $user == null
-            ||  $pass == null
-        ) {
-            die('Please specify parameters [user][pass] with your JIRA credentials for the tool to operate.');
+        $user         = $credentials->user;
+        $pass         = $credentials->pass;
+
+        if ($user == null || $pass == null) {
+            die('Please specify "user" and "pass" properties in the json "credentials" object.');
         }
 
         return array(

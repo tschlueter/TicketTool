@@ -26,6 +26,8 @@ class Controller_Setting
 
     /** The resource path for text files. */
     const PATH_RES_TXT = 'res/txt';
+    /** The input path for importing the settings. */
+    const PATH_IN_SETTINGS = 'in/settings.json';
     /** The input path for importing the XML file. */
     const PATH_IN_XML = 'in/SearchRequest.xml';
     /** The output path for all pdf files. */
