@@ -5,33 +5,41 @@
 
     <body>
 
-        <img id="logo" src="res/image/logo.jpg" alt="BAHAG TicketTool" title="BAHAG TicketTool">
+        <div id="mainContainer" class="container">
 
-        <div class="formContainer">
+            <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
 
-            <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+            <pre>{$asciiLogo}</pre>
 
-                <label>Ticket-IDs:</label>
-                <input type="text" name="ticketIds" title="Ticket-IDs">
-                <input type="submit" value="PDF aus Ticket-IDs generieren">
+            <div class="container">
 
-                <input type="hidden" name="action" value="{$formActionGenerateFromTicketIds}">
+                <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
 
-            </form>
+                    <label class="formLabel">Ticket-IDs:<br><br></label>
+                    <input id="ticketIds" type="text" name="ticketIds" title="Ticket-IDs"><br><br>
+                    <input type="submit" value="PDF aus Ticket-IDs generieren">
 
-        </div>
+                    <input type="hidden" name="action" value="{$formActionGenerateFromTicketIds}">
 
-        <div class="formContainer">
+                </form>
 
-            <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+            </div>
 
-                <label>XML file:</label>
-                <input type="file" name="xmlFile" title="XML file upload">
-                <input type="submit" value="PDF aus XML generieren">
+            <br>
 
-                <input type="hidden" name="action" value="{$formActionGenerateFromXml}">
+            <div class="container">
 
-            </form>
+                <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+
+                    <label class="formLabel">XML file:<br><br></label>
+                    <input id="xmlFile" type="file" name="xmlFile" title="XML file upload"><br><br>
+                    <input type="submit" value="PDF aus XML generieren">
+
+                    <input type="hidden" name="action" value="{$formActionGenerateFromXml}">
+
+                </form>
+
+            </div>
 
         </div>
 

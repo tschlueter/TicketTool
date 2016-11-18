@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-11-18 16:41:35
+/* Smarty version 3.1.30, created on 2016-11-18 17:19:29
   from "C:\Users\Stock\workspaces\www-local\TicketTool\res\smarty\template\default\upload.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_582f212f5c9787_41144945',
+  'unifunc' => 'content_582f2a11a4ab73_39708627',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '51c3f99dc88a9e2fb1f1036e181cf76a4fef29c8' => 
     array (
       0 => 'C:\\Users\\Stock\\workspaces\\www-local\\TicketTool\\res\\smarty\\template\\default\\upload.tpl',
-      1 => 1479483686,
+      1 => 1479485967,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../component/head.tpl' => 1,
   ),
 ),false)) {
-function content_582f212f5c9787_41144945 (Smarty_Internal_Template $_smarty_tpl) {
+function content_582f2a11a4ab73_39708627 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,35 +32,44 @@ function content_582f212f5c9787_41144945 (Smarty_Internal_Template $_smarty_tpl)
 
     <body>
 
-        <img id="logo" src="res/image/logo.jpg" alt="BAHAG TicketTool" title="BAHAG TicketTool">
+        <div id="mainContainer" class="container">
 
-        <div class="formContainer">
+            <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
 
-            <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+            <pre><?php echo $_smarty_tpl->tpl_vars['asciiLogo']->value;?>
+</pre>
 
-                <label>Ticket-IDs:</label>
-                <input type="text" name="ticketIds" title="Ticket-IDs">
-                <input type="submit" value="PDF aus Ticket-IDs generieren">
+            <div class="container">
 
-                <input type="hidden" name="action" value="<?php echo $_smarty_tpl->tpl_vars['formActionGenerateFromTicketIds']->value;?>
+                <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+
+                    <label class="formLabel">Ticket-IDs:<br><br></label>
+                    <input id="ticketIds" type="text" name="ticketIds" title="Ticket-IDs"><br><br>
+                    <input type="submit" value="PDF aus Ticket-IDs generieren">
+
+                    <input type="hidden" name="action" value="<?php echo $_smarty_tpl->tpl_vars['formActionGenerateFromTicketIds']->value;?>
 ">
 
-            </form>
+                </form>
 
-        </div>
+            </div>
 
-        <div class="formContainer">
+            <br>
 
-            <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+            <div class="container">
 
-                <label>XML file:</label>
-                <input type="file" name="xmlFile" title="XML file upload">
-                <input type="submit" value="PDF aus XML generieren">
+                <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
 
-                <input type="hidden" name="action" value="<?php echo $_smarty_tpl->tpl_vars['formActionGenerateFromXml']->value;?>
+                    <label class="formLabel">XML file:<br><br></label>
+                    <input id="xmlFile" type="file" name="xmlFile" title="XML file upload"><br><br>
+                    <input type="submit" value="PDF aus XML generieren">
+
+                    <input type="hidden" name="action" value="<?php echo $_smarty_tpl->tpl_vars['formActionGenerateFromXml']->value;?>
 ">
 
-            </form>
+                </form>
+
+            </div>
 
         </div>
 

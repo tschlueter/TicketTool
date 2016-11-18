@@ -33,6 +33,12 @@ class View_WebFrontend
      */
     public function showUploadForm()
     {
+        $asciiLogo = Controller_TicketTool::getAsciiLogo();
+        $asciiLogo .= '<br>';
+        $asciiLogo .= Controller_Setting::TITLE . ', WEB-edition, v.' . Controller_Setting::VERSION;
+
+        $this->_smarty->assign('asciiLogo', $asciiLogo);
+
         $this->_smarty->assign('formActionGenerateFromTicketIds', Controller_Setting::ACTION_ID_CREATE_PDF_FROM_TICKET_IDS);
         $this->_smarty->assign('formActionGenerateFromXml',       Controller_Setting::ACTION_ID_CREATE_PDF_FROM_XML);
 
@@ -46,7 +52,7 @@ class View_WebFrontend
      */
     public function showGenerationPage($output)
     {
-        $this->_smarty->assign('output',                          $output);
+        $this->_smarty->assign('output',    $output);
 
         $this->_smarty->display('default/generate.tpl');
     }

@@ -44,8 +44,10 @@ class Controller_TicketTool
      */
     private function _runCliVersion()
     {
+        $asciiLogo = self::getAsciiLogo();
+
         Controller_TicketTool::DEBUG_LOG();
-        $this->_outputAsciiLogo();
+        Controller_TicketTool::DEBUG_LOG($asciiLogo);
         Controller_TicketTool::DEBUG_LOG(Controller_Setting::TITLE . ', CLI-edition, v.' . Controller_Setting::VERSION);
 
         $params    = $this->_parseCredentialsFromSettingsFile();
@@ -160,13 +162,13 @@ class Controller_TicketTool
     /**
      * Streams external resource containing the logo in ASCII art and outputs it to the console.
      *
-     * @return void
+     * @return string
      */
-    private static function _outputAsciiLogo()
+    public static function getAsciiLogo()
     {
         $asciiLogo = file_get_contents(Controller_Setting::PATH_RES_TXT . DIRECTORY_SEPARATOR . 'logo.txt');
 
-        Controller_TicketTool::DEBUG_LOG($asciiLogo);
+        return $asciiLogo;
     }
 
     /**
