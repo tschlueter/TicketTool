@@ -78,4 +78,11 @@ class Controller_Setting
     /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */
     const DEBUG_SUPERSIZE_TITLE = false;
 
+    /** The action ID for showing the upload and input form. */
+    const ACTION_ID_SHOW_UPLOAD_FORM = 0;
+    /** The action ID for creating the PDF from the specified ticket IDs. */
+    const ACTION_ID_CREATE_PDF_FROM_TICKET_IDS = 1;
+    /** The action ID for creating the PDF from an XML file. */
+    const ACTION_ID_CREATE_PDF_FROM_XML = 2;
+
 }

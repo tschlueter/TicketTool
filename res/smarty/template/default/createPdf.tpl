@@ -16,6 +16,8 @@
 
     <body>
 
+        This is the output field:
+
         <pre>
             {$output}
         </pre>

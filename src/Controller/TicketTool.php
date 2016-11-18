@@ -73,17 +73,38 @@ class Controller_TicketTool
      */
     private function _runWebVersion()
     {
-        Controller_Setting::$DEBUG_ENABLE_LOGS = true;
-
-        $webFrontendView = new View_WebFrontend();
-        $webFrontendView->showUploadForm(
-            'Dynamic Smarty output'
+        $action = (
+            array_key_exists('action', $_POST)
+            ? $_POST['action']
+            : Controller_Setting::ACTION_ID_SHOW_UPLOAD_FORM
         );
 
+        $webFrontendView = new View_WebFrontend();
+
+        switch ($action) {
+            case Controller_Setting::ACTION_ID_SHOW_UPLOAD_FORM:
+                $webFrontendView->showUploadForm();
+                break;
+
+            case Controller_Setting::ACTION_ID_CREATE_PDF_FROM_TICKET_IDS:
+                $webFrontendView->showGenerationPage(
+                    'Dynamic Smarty output'
+                );
+                break;
+
+            case Controller_Setting::ACTION_ID_CREATE_PDF_FROM_XML:
+                $webFrontendView->showGenerationPage(
+                    'Dynamic Smarty output'
+                );
+                break;
+        }
+
+if (false) {
         self::DEBUG_LOG('<pre>');
         $params = $this->_parseCredentialsFromSettingsFile();
         $this->_createAndRunTicketToolService($params, false);
         self::DEBUG_LOG('</pre>');
+}
     }
 
     /**

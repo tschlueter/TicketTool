@@ -30,14 +30,25 @@ class View_WebFrontend
 
     /**
      * Shows the upload web form.
+     */
+    public function showUploadForm()
+    {
+        $this->_smarty->assign('formActionGenerateFromTicketIds', Controller_Setting::ACTION_ID_CREATE_PDF_FROM_TICKET_IDS);
+        $this->_smarty->assign('formActionGenerateFromXml',       Controller_Setting::ACTION_ID_CREATE_PDF_FROM_XML);
+
+        $this->_smarty->display('default/upload.tpl');
+    }
+
+    /**
+     * Shows the upload web form.
      *
      * @param string $output
      */
-    public function showUploadForm($output)
+    public function showGenerationPage($output)
     {
-        $this->_smarty->assign('output', $output);
+        $this->_smarty->assign('output',                          $output);
 
-        $this->_smarty->display('default/uploadForm.tpl');
+        $this->_smarty->display('default/createPdf.tpl');
     }
 
 }
