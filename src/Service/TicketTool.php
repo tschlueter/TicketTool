@@ -133,25 +133,4 @@ class Service_TicketTool
         Controller_TicketTool::DEBUG_LOG();
     }
 
-    /**
-     * Tests the smarty template engine.
-     */
-    private function _testSmarty()
-    {
-        // create object
-        $smarty = new Smarty;
-
-        $smarty->setTemplateDir('res/smarty/template'  );
-        $smarty->setCompileDir( 'res/smarty/template_c');
-
-        // assign some content. This would typically come from
-        // a database or other source, but we'll use static
-        // values for the purpose of this example.
-        $smarty->assign('name', 'george smith');
-        $smarty->assign('address', '45th & Harris');
-
-        // display it
-        $smarty->display('default/index.tpl');
-    }
-
 }

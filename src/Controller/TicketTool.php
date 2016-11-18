@@ -1,27 +1,37 @@
 <?php
 /**
- * A tool for printing tickets.
+ * The main controller for the TicketTools.
+ * Also contains the ticket list.
  *
- * TODO ASAP Tool is inoperative if only one single ticket is exported! Fix this!
+ * Pairing Tickets:
+ *
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
+ * TODO ASAP QR code 10cm.
+ * TODO ASAP Move BAHAG base url to external settings file!
+ * TODO ASAP Increase ticket title.
+ * TODO ASAP Add SASS for css generation.
+ *
+ * Single tickets:
+ *
+ * TODO ASAP Own class for WebFrontend - implement templating engine ('Smarty') for phtml files?
+ *
+ * TODO ASAP Fancy UI for uploading XML (jQuery).
+ * TODO ASAP Enable XML upload field in frontend!
+ * TODO ASAP Implement AJAX requests for life console logging.
+ * TODO ASAP Add TypeScript for JS generation.
+ * TODO ASAP Tool is inoperative if only one single ticket is exported! Fix this!
  * TODO ASAP Reset repository.
  * TODO ASAP Use COMPOSER for loading libs and class autoloading (Symfony component!)
- * TODO ASAP Fancy UI for uploading XML (jQuery).
- * TODO ASAP Implement templating engine ('Smarty') for phtml files?
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
  * TODO ASAP Enable single or multiple ticket print support.
  * TODO ASAP Create user-stories how to use it!.
  * TODO ASAP Enable text input fields for several ticket numbers!
- * TODO ASAP Enable XML upload field in frontend!
- * TODO HIGH Implement AJAX requests for life console logging.
- * TODO INIT Add TypeScript for JS generation.
- * TODO INIT Add SASS for css generation.
- * TODO INIT Make frontend 3D and responsive?
- * TODO LOW  Create webservice that invokes the tool?
- * TODO LOW  Move project to private Git Repo?
- * TODO LOW  Add PHP-Doc and script for its generation.
- * TODO LOW  Create Wiki page.
- * TODO WEAK No need to stream Tickets because all information are stored in the input XML!
+ * TODO ASAP Add PHP-Doc and script for its generation.
+ * TODO ASAP Make frontend 3D and responsive?
+ * TODO ASAP Create webservice that invokes the tool?
+ * TODO ASAP Move project to private Git Repo?
+ * TODO ASAP Create Wiki page.
+ * TODO ASAP No need to stream Tickets because all information are stored in the input XML!
  */
 class Controller_TicketTool
 {
@@ -63,28 +73,11 @@ class Controller_TicketTool
      */
     private function _runWebVersion()
     {
-        $title = Controller_Setting::TITLE . ', WEB-edition, v.' . Controller_Setting::VERSION;
-
-        Controller_TicketTool::DEBUG_LOG('<html>');
-        Controller_TicketTool::DEBUG_LOG('<head>');
-        Controller_TicketTool::DEBUG_LOG('<title>' .  $title . '</title>');
-        Controller_TicketTool::DEBUG_LOG('<meta charset="utf-8" />');
-        Controller_TicketTool::DEBUG_LOG('<link rel="icon"          href="favicon.ico" type="image/x-icon" />');
-        Controller_TicketTool::DEBUG_LOG('<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />');
-        Controller_TicketTool::DEBUG_LOG('</head>');
-        Controller_TicketTool::DEBUG_LOG('<body>');
-        Controller_TicketTool::DEBUG_LOG('<pre>');
-        $this->_outputAsciiLogo();
-        Controller_TicketTool::DEBUG_LOG($title);
-        Controller_TicketTool::DEBUG_LOG();
-
         $params = $this->_parseCredentialsFromSettingsFile();
         $this->_createAndRunTicketToolService($params, false);
 
-        Controller_TicketTool::DEBUG_LOG('Done.');
-        Controller_TicketTool::DEBUG_LOG('</pre>');
-        Controller_TicketTool::DEBUG_LOG('</body>');
-        Controller_TicketTool::DEBUG_LOG('</html>');
+        $webFrontendView = new View_WebFrontend();
+        $webFrontendView->showUploadForm('Output goes here ...');
     }
 
     /**
