@@ -8,7 +8,7 @@ class Controller_Setting
     /** The application title. */
     const TITLE = 'BAHAG TicketTool';
     /** The version identifier. */
-    const VERSION = '1.0.0 2016-11-09 11:14:00';
+    const VERSION = '2.0.0 2016-11-18 19:09:24';
 
     /** The image size for the QR code to create. */
     const QR_IMAGE_SIZE = 6.5;
