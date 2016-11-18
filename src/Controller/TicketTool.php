@@ -5,13 +5,9 @@
  *
  * Pairing Tickets:
  *
- * TODO ASAP QR code 10cm.
- *
- * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
- * TODO ASAP Increase ticket title.
  * TODO ASAP Add SASS for css generation.
  * TODO ASAP Create unit tests.
- * TODO ASAP Refactpr Service_JiraTicketImporter to non-static functionality.
+ * TODO ASAP Refactor Service_JiraTicketImporter to non-static functionality.
  *
  * Single tickets:
  *

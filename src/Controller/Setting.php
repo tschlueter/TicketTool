@@ -11,9 +11,11 @@ class Controller_Setting
     const VERSION = '1.0.0 2016-11-09 11:14:00';
 
     /** The image size for the QR code to create. */
-    const QR_IMAGE_SIZE = 8;
+    const QR_IMAGE_SIZE = 6.5;
     /** The margin offset size for the QR code to create. */
     const QR_IMAGE_MARGIN = 0;
+    /** The position y of the QR code */
+    const QR_IMAGE_POSITION_Y = 8;
 
     /** The number of seconds per hour. */
     const SECONDS_PER_HOUR = 3600;
@@ -46,8 +48,10 @@ class Controller_Setting
 
     /** The font to use for all texts in the pdf. */
     const PDF_FONT_FACE = 'Arial';
+    /** Font style for 'ticket details' */
+    const PDF_FONT_DETAILS_STYLE = 'B';
     /** Font size for 'ticket details' */
-    const PDF_FONT_SIZE_DETAILS = 12.5;
+    const PDF_FONT_DETAILS_SIZE = 18.5;
     /** Font size for 'ticket id' */
     const PDF_FONT_SIZE_ID = 27.5;
     /** Font size for 'ticket title' */
@@ -64,9 +68,9 @@ class Controller_Setting
     const PDF_RECT_BORDER_Y = 0.0;
 
     /** Y offset of the ticket id. */
-    const PDF_OFFSET_TICKET_ID_Y = 20.0;
+    const PDF_OFFSET_TICKET_ID_Y = 25.0;
     /** Offset y for the ticket title. */
-    const PDF_OFFSET_TICKET_TITLE_Y = 35.0;
+    const PDF_OFFSET_TICKET_TITLE_Y = 0.0;
 
     /** Height of the ticket title block element. */
     const PDF_TICKET_TITLE_BLOCK_HEIGHT = 40.0;
