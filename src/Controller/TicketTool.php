@@ -3,7 +3,6 @@
  * The main controller for the TicketTools.
  * Also contains the ticket list.
  *
- * TODO ASAP Add error handling if form fields are empty.
  * TODO HIGH Enable/FIX single or multiple ticket print support from XML.
  * TODO INIT Use COMPOSER for loading libs and class autoloading (Symfony component!)
  * TODO INIT Create user-stories how to use it!.
@@ -80,14 +79,23 @@ class Controller_TicketTool
 
                 Controller_Setting::$DEBUG_ENABLE_LOGS = false;
 
-                $params    = $this->_parseCredentialsFromSettingsFile();
-                $ticketIds = preg_split('/,/', $_POST['ticketIds']);
+                $output = '';
 
-                $pdfFilename = $this->_createAndRunTicketToolService($params, false, $ticketIds);
+                $params = $this->_parseCredentialsFromSettingsFile();
 
-                $webFrontendView->showGenerationPage(
-                    'Your PDF has been generated<br><br>' . $pdfFilename
-                );
+                if (empty($_POST['ticketIds'])) {
+                    $output = '<span style="color: #ff0000;">'
+                        . 'Please enter one or more ticket-IDs'
+                        . "\n"
+                        . 'separated by commas.'
+                        . '</span>';
+                } else {
+                    $ticketIds   = preg_split('/,/', $_POST['ticketIds']);
+                    $pdfFilename = $this->_createAndRunTicketToolService($params, false, $ticketIds);
+                    $output      = 'Your PDF has been generated<br><br>' . $pdfFilename;
+                }
+
+                $webFrontendView->showGenerationPage($output);
 
                 break;
 
@@ -95,15 +103,23 @@ class Controller_TicketTool
 
                 Controller_Setting::$DEBUG_ENABLE_LOGS = false;
 
+                $output    = '';
+
                 $params = $this->_parseCredentialsFromSettingsFile();
-                rename($_FILES['xmlFile']['tmp_name'], Controller_Setting::PATH_IN_XML);
-                $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(Controller_Setting::PATH_IN_XML);
 
-                $pdfFilename = $this->_createAndRunTicketToolService($params, false, $ticketIds);
+                if (empty($_FILES['xmlFile']['tmp_name'])) {
+                    $output = '<span style="color: #ff0000;">'
+                        . 'Please specify a Jira XML export file.'
+                        . '</span>';
+                } else {
+                    rename($_FILES['xmlFile']['tmp_name'], Controller_Setting::PATH_IN_XML);
+                    $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(Controller_Setting::PATH_IN_XML);
 
-                $webFrontendView->showGenerationPage(
-                    'Your PDF has been generated<br><br>' . $pdfFilename
-                );
+                    $pdfFilename = $this->_createAndRunTicketToolService($params, false, $ticketIds);
+                    $output      = 'Your PDF has been generated<br><br>' . $pdfFilename;
+                }
+
+                $webFrontendView->showGenerationPage($output);
 
                 break;
         }
@@ -137,7 +153,7 @@ class Controller_TicketTool
         $settingsFile = Controller_Setting::PATH_IN_SETTINGS;
 
         if (!file_exists($settingsFile)) {
-            die('Please specify the json settings file containing your JIRA credentials in the input directory.');
+            die('Please specify the json settings file in the input directory.');
         }
 
         $settingsJson = file_get_contents($settingsFile);
@@ -151,12 +167,12 @@ class Controller_TicketTool
         $jiraBaseUrl  = $jira->baseUrl;
 
         if ($user == null || $pass == null || $jiraBaseUrl == null) {
-            die('Invalid config.');
+            die('Invalid config file structure!');
         }
 
         return array(
-            'user' => $user,
-            'pass' => $pass,
+            'user'        => $user,
+            'pass'        => $pass,
             'jiraBaseUrl' => $jiraBaseUrl,
         );
     }

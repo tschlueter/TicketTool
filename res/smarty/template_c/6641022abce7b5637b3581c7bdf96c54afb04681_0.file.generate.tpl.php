@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-11-18 17:31:52
+/* Smarty version 3.1.30, created on 2016-11-18 18:22:22
   from "C:\Users\Stock\workspaces\www-local\TicketTool\res\smarty\template\default\generate.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_582f2cf8f2f614_38602339',
+  'unifunc' => 'content_582f38ce714b30_29839144',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6641022abce7b5637b3581c7bdf96c54afb04681' => 
     array (
       0 => 'C:\\Users\\Stock\\workspaces\\www-local\\TicketTool\\res\\smarty\\template\\default\\generate.tpl',
-      1 => 1479486704,
+      1 => 1479489737,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../component/head.tpl' => 1,
   ),
 ),false)) {
-function content_582f2cf8f2f614_38602339 (Smarty_Internal_Template $_smarty_tpl) {
+function content_582f38ce714b30_29839144 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +45,7 @@ function content_582f2cf8f2f614_38602339 (Smarty_Internal_Template $_smarty_tpl)
 
                 <form target="_self" method="get" action="index.php" enctype="multipart/form-data">
 
-                    <input type="submit" value="Back to upload form">
+                    <input type="submit" value="Back">
 
                 </form>
 

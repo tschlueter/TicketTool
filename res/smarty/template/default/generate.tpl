@@ -16,7 +16,7 @@
 
                 <form target="_self" method="get" action="index.php" enctype="multipart/form-data">
 
-                    <input type="submit" value="Back to upload form">
+                    <input type="submit" value="Back">
 
                 </form>
 

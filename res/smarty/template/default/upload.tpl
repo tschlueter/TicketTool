@@ -16,7 +16,7 @@
 
                     <label class="formLabel">Ticket-IDs:<br><br></label>
                     <input id="ticketIds" type="text" name="ticketIds" title="Ticket-IDs"><br><br>
-                    <input type="submit" value="PDF aus Ticket-IDs generieren">
+                    <input type="submit" value="Generate">
 
                     <input type="hidden" name="action" value="{$formActionGenerateFromTicketIds}">
 
@@ -32,7 +32,7 @@
 
                     <label class="formLabel">XML file:<br><br></label>
                     <input id="xmlFile" type="file" name="xmlFile" title="XML file upload"><br><br>
-                    <input type="submit" value="PDF aus XML generieren">
+                    <input type="submit" value="Generate">
 
                     <input type="hidden" name="action" value="{$formActionGenerateFromXml}">
 
