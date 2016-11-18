@@ -5,9 +5,10 @@
  *
  * Pairing Tickets:
  *
+ * TODO ASAP QR code 10cm.
+ *
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
  * TODO ASAP Increase ticket title.
- * TODO ASAP QR code 10cm.
  * TODO ASAP Add SASS for css generation.
  * TODO ASAP Create unit tests.
  * TODO ASAP Refactpr Service_JiraTicketImporter to non-static functionality.
@@ -62,8 +63,10 @@ class Controller_TicketTool
         $this->_outputAsciiLogo();
         Controller_TicketTool::DEBUG_LOG(Controller_Setting::TITLE . ', CLI-edition, v.' . Controller_Setting::VERSION);
 
-        $params = $this->_parseCredentialsFromSettingsFile();
-        $this->_createAndRunTicketToolService($params, true);
+        $params    = $this->_parseCredentialsFromSettingsFile();
+        $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(Controller_Setting::PATH_IN_XML);
+
+        $this->_createAndRunTicketToolService($params, true, $ticketIds);
 
         Controller_TicketTool::DEBUG_LOG('Done.');
     }
@@ -87,31 +90,41 @@ class Controller_TicketTool
                 break;
 
             case Controller_Setting::ACTION_ID_CREATE_PDF_FROM_TICKET_IDS:
+
                 $webFrontendView->showGenerationPage(
                     'Dynamic Smarty output'
                 );
+
+                self::DEBUG_LOG('<pre>');
+                $params    = $this->_parseCredentialsFromSettingsFile();
+                $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(Controller_Setting::PATH_IN_XML);
+                $this->_createAndRunTicketToolService($params, false, $ticketIds);
+                self::DEBUG_LOG('</pre>');
+
                 break;
 
             case Controller_Setting::ACTION_ID_CREATE_PDF_FROM_XML:
+
                 $webFrontendView->showGenerationPage(
                     'Dynamic Smarty output'
                 );
+
+                self::DEBUG_LOG('<pre>');
+                $params    = $this->_parseCredentialsFromSettingsFile();
+                $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(Controller_Setting::PATH_IN_XML);
+                $this->_createAndRunTicketToolService($params, false, $ticketIds);
+                self::DEBUG_LOG('</pre>');
+
                 break;
         }
-
-if (false) {
-        self::DEBUG_LOG('<pre>');
-        $params = $this->_parseCredentialsFromSettingsFile();
-        $this->_createAndRunTicketToolService($params, false);
-        self::DEBUG_LOG('</pre>');
-}
     }
 
     /**
-     * @param array   $params
-     * @param boolean $cliRequest
+     * @param array    $params
+     * @param boolean  $cliRequest
+     * @param string[] $ticketIds
      */
-    private function _createAndRunTicketToolService($params, $cliRequest)
+    private function _createAndRunTicketToolService($params, $cliRequest, $ticketIds)
     {
         $this->_ticketToolService = new Service_TicketTool(
             $params['user'],
@@ -119,7 +132,7 @@ if (false) {
             $params['jiraBaseUrl'],
             $cliRequest
         );
-        $this->_ticketToolService->run();
+        $this->_ticketToolService->run($ticketIds);
     }
 
     /**

@@ -1,43 +1,34 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-11-18 14:20:10
+/* Smarty version 3.1.30, created on 2016-11-18 14:49:22
   from "C:\Users\Stock\workspaces\www-local\TicketTool\res\smarty\template\default\upload.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_582f000add32c8_71849290',
+  'unifunc' => 'content_582f06e2714da5_90563949',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '51c3f99dc88a9e2fb1f1036e181cf76a4fef29c8' => 
     array (
       0 => 'C:\\Users\\Stock\\workspaces\\www-local\\TicketTool\\res\\smarty\\template\\default\\upload.tpl',
-      1 => 1479475209,
+      1 => 1479476954,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:../component/head.tpl' => 1,
   ),
 ),false)) {
-function content_582f000add32c8_71849290 (Smarty_Internal_Template $_smarty_tpl) {
+function content_582f06e2714da5_90563949 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
 
-    <head>
+<?php $_smarty_tpl->_subTemplateRender("file:../component/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
-        <title><?php echo $_smarty_tpl->tpl_vars['pageTitle']->value;?>
-</title>
-
-        <meta charset="utf-8" />
-
-        <link rel="icon"          href="favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-        <link rel="stylesheet" href="css/custom.css">
-
-    </head>
 
     <body>
 

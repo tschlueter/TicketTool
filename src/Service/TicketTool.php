@@ -40,18 +40,11 @@ class Service_TicketTool
     }
 
     /**
-     * @return void
+     * @param string[] $ticketIds
      */
-    public function run()
+    public function run($ticketIds)
     {
         $this->_createOutputDirectories();
-
-        //$this->_testSmarty();
-
-        $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(
-            Controller_Setting::PATH_IN_XML
-        );
-
         $this->_streamAndExportTickets($ticketIds);
     }
 
