@@ -1,15 +1,15 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-11-18 16:32:17
+/* Smarty version 3.1.30, created on 2016-11-18 16:40:03
   from "C:\Users\Stock\workspaces\www-local\TicketTool\res\smarty\template\default\generate.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_582f1f011eb4b0_89960183',
+  'unifunc' => 'content_582f20d37537e2_90335138',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '9ca6c4c02706fd3366a317fbf1814044a8ce2183' => 
+    '6641022abce7b5637b3581c7bdf96c54afb04681' => 
     array (
       0 => 'C:\\Users\\Stock\\workspaces\\www-local\\TicketTool\\res\\smarty\\template\\default\\generate.tpl',
       1 => 1479480934,
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../component/head.tpl' => 1,
   ),
 ),false)) {
-function content_582f1f011eb4b0_89960183 (Smarty_Internal_Template $_smarty_tpl) {
+function content_582f20d37537e2_90335138 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>

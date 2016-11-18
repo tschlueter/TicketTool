@@ -1,5 +1,13 @@
+html
+{
+    width:                      100%;
+}
+
 body
 {
+    width:                      100%;
+    text-align:                 center;
+
     background:                 #ffffff;
     margin:                     0;
     padding:                    0;
@@ -12,4 +20,9 @@ body
 
     color:                      #444444;
     line-height:                1.5;
+}
+
+img#logo
+{
+    margin:                     25px auto 25px auto;
 }

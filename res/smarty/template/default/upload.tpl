@@ -5,25 +5,35 @@
 
     <body>
 
-        <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+        <img id="logo" src="res/image/logo.jpg" alt="BAHAG TicketTool" title="BAHAG TicketTool">
 
-            <label>Ticket-IDs:</label>
-            <input type="text" name="ticketIds" title="Ticket-IDs">
-            <input type="submit" value="PDF aus Ticket-IDs generieren">
+        <div class="formContainer">
 
-            <input type="hidden" name="action" value="{$formActionGenerateFromTicketIds}">
+            <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
 
-        </form>
+                <label>Ticket-IDs:</label>
+                <input type="text" name="ticketIds" title="Ticket-IDs">
+                <input type="submit" value="PDF aus Ticket-IDs generieren">
 
-        <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="{$formActionGenerateFromTicketIds}">
 
-            <label>XML file:</label>
-            <input type="file" name="xmlFile" title="XML file upload">
-            <input type="submit" value="PDF aus XML generieren">
+            </form>
 
-            <input type="hidden" name="action" value="{$formActionGenerateFromXml}">
+        </div>
 
-        </form>
+        <div class="formContainer">
+
+            <form target="_self" method="post" action="index.php" enctype="multipart/form-data">
+
+                <label>XML file:</label>
+                <input type="file" name="xmlFile" title="XML file upload">
+                <input type="submit" value="PDF aus XML generieren">
+
+                <input type="hidden" name="action" value="{$formActionGenerateFromXml}">
+
+            </form>
+
+        </div>
 
     </body>
 

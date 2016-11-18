@@ -48,7 +48,7 @@ class View_WebFrontend
     {
         $this->_smarty->assign('output',                          $output);
 
-        $this->_smarty->display('default/createPdf.tpl');
+        $this->_smarty->display('default/generate.tpl');
     }
 
 }
