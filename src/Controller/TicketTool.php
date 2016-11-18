@@ -3,6 +3,7 @@
  * The main controller for the TicketTools.
  * Also contains the ticket list.
  *
+ * TODO ASAP Add error handling if form fields are empty.
  * TODO HIGH Enable/FIX single or multiple ticket print support from XML.
  * TODO INIT Use COMPOSER for loading libs and class autoloading (Symfony component!)
  * TODO INIT Create user-stories how to use it!.
@@ -14,7 +15,6 @@
  * TODO LOW  Create Wiki page.
  * TODO LOW  Implement AJAX requests for life console logging?
  * TODO LOW  Reset repository.
- * TODO WEAK Fancy UI for uploading XML (jQuery).
  * TODO WEAK Add TypeScript for JS generation.
  * TODO WEAK Add SASS for css generation?
  * TODO WEAK Make frontend 3D and responsive?
@@ -78,32 +78,32 @@ class Controller_TicketTool
 
             case Controller_Setting::ACTION_ID_CREATE_PDF_FROM_TICKET_IDS:
 
-                $webFrontendView->showGenerationPage(
-                    'Dynamic Smarty output'
-                );
+                Controller_Setting::$DEBUG_ENABLE_LOGS = false;
 
-                self::DEBUG_LOG('<pre>');
                 $params    = $this->_parseCredentialsFromSettingsFile();
                 $ticketIds = preg_split('/,/', $_POST['ticketIds']);
-                $this->_createAndRunTicketToolService($params, false, $ticketIds);
-                self::DEBUG_LOG('</pre>');
+
+                $pdfFilename = $this->_createAndRunTicketToolService($params, false, $ticketIds);
+
+                $webFrontendView->showGenerationPage(
+                    'Your PDF has been generated<br><br>' . $pdfFilename
+                );
 
                 break;
 
             case Controller_Setting::ACTION_ID_CREATE_PDF_FROM_XML:
 
-                $webFrontendView->showGenerationPage(
-                    'Dynamic Smarty output'
-                );
+                Controller_Setting::$DEBUG_ENABLE_LOGS = false;
 
-                self::DEBUG_LOG('<pre>');
                 $params = $this->_parseCredentialsFromSettingsFile();
-
                 rename($_FILES['xmlFile']['tmp_name'], Controller_Setting::PATH_IN_XML);
-
                 $ticketIds = Service_JiraXmlTicketParser::parseTicketIds(Controller_Setting::PATH_IN_XML);
-                $this->_createAndRunTicketToolService($params, false, $ticketIds);
-                self::DEBUG_LOG('</pre>');
+
+                $pdfFilename = $this->_createAndRunTicketToolService($params, false, $ticketIds);
+
+                $webFrontendView->showGenerationPage(
+                    'Your PDF has been generated<br><br>' . $pdfFilename
+                );
 
                 break;
         }
@@ -113,8 +113,10 @@ class Controller_TicketTool
      * @param array    $params
      * @param boolean  $cliRequest
      * @param string[] $ticketIds
+     *
+     * @return string The PDF filename as a clickable link.
      */
-    private function _createAndRunTicketToolService($params, $cliRequest, $ticketIds)
+    public function _createAndRunTicketToolService($params, $cliRequest, $ticketIds)
     {
         $this->_ticketToolService = new Service_TicketTool(
             $params['user'],
@@ -122,7 +124,7 @@ class Controller_TicketTool
             $params['jiraBaseUrl'],
             $cliRequest
         );
-        $this->_ticketToolService->run($ticketIds);
+        return $this->_ticketToolService->run($ticketIds);
     }
 
     /**

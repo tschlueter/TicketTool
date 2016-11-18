@@ -41,11 +41,15 @@ class Service_TicketTool
 
     /**
      * @param string[] $ticketIds
+     *
+     * @return string
      */
     public function run($ticketIds)
     {
         $this->_createOutputDirectories();
-        $this->_streamAndExportTickets($ticketIds);
+        $pdfFilename = $this->_streamAndExportTickets($ticketIds);
+
+        return $pdfFilename;
     }
 
     /**
@@ -62,6 +66,8 @@ class Service_TicketTool
      * Performs batch processing for the given ticket-IDs.
      *
      * @param string[] $ticketIds
+     *
+     * @return string
      */
     private function _streamAndExportTickets($ticketIds)
     {
@@ -77,15 +83,14 @@ class Service_TicketTool
             Controller_TicketTool::DEBUG_LOG(
                 'Successfully created pdf file [' . $this->_pdfExportService->getFileName() . ']'
             );
-        } else {
-            Controller_TicketTool::DEBUG_LOG(
-                'Successfully created pdf file [<a href="' . $this->_pdfExportService->getFileName() . '" target="_blank">'
-                . $this->_pdfExportService->getFileName()
-                . '</a>]'
-            );
+            Controller_TicketTool::DEBUG_LOG();
         }
 
-        Controller_TicketTool::DEBUG_LOG();
+        return '<a href="'
+            . $this->_pdfExportService->getFileName()
+            . '" target="_blank">'
+            . basename($this->_pdfExportService->getFileName())
+            . '</a>';
     }
 
     /**

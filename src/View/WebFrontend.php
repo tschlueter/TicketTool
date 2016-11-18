@@ -53,7 +53,7 @@ class View_WebFrontend
     {
         $asciiLogo = Controller_TicketTool::getAsciiLogo();
         $asciiLogo .= '<br>';
-        $asciiLogo .= Controller_Setting::TITLE . ', WEB-edition, v.' . Controller_Setting::VERSION;
+        $asciiLogo .= Controller_Setting::TITLE . ', WEB-edition,' . "\n" . 'v.' . Controller_Setting::VERSION;
 
         $this->_smarty->assign('asciiLogo',     $asciiLogo);
         $this->_smarty->assign('consoleOutput', $output);
