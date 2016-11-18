@@ -5,20 +5,27 @@
 
     <body>
 
-        <div id="mainContainer" class="container">
+        <div class="container-table wow zoomIn" data-wow-delay="0.0s" data-wow-duration="2.5s">
+            <div class="container-cell">
 
-            <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
-            <pre>{$asciiLogo}</pre>
+                <div class="container container-main" style="visibility: hidden;">
 
-            <div class="container">
+                    <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
+                    <pre>{$asciiLogo}</pre>
 
-                <pre id="outputConsole">{$consoleOutput}</pre>
+                    <div class="container wow fadeIn" data-wow-delay="1.0s" data-wow-duration="0.5s">
 
-                <form target="_self" method="get" action="index.php" enctype="multipart/form-data">
+                        <pre id="outputConsole">{$consoleOutput}</pre>
 
-                    <input type="submit" value="Back">
+                        <form target="_self" method="get" action="index.php" enctype="multipart/form-data">
 
-                </form>
+                            <input type="submit" value="Back">
+
+                        </form>
+
+                    </div>
+
+                </div>
 
             </div>
 

@@ -16,7 +16,6 @@
  * TODO LOW  Reset repository.
  * TODO WEAK Add TypeScript for JS generation.
  * TODO WEAK Add SASS for css generation?
- * TODO WEAK Make frontend 3D and responsive?
  */
 class Controller_TicketTool
 {
