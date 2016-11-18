@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2016-11-18 17:19:29
+/* Smarty version 3.1.30, created on 2016-11-18 17:32:01
   from "C:\Users\Stock\workspaces\www-local\TicketTool\res\smarty\template\default\upload.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_582f2a11a4ab73_39708627',
+  'unifunc' => 'content_582f2d016ed372_81581012',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '51c3f99dc88a9e2fb1f1036e181cf76a4fef29c8' => 
     array (
       0 => 'C:\\Users\\Stock\\workspaces\\www-local\\TicketTool\\res\\smarty\\template\\default\\upload.tpl',
-      1 => 1479485967,
+      1 => 1479486523,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../component/head.tpl' => 1,
   ),
 ),false)) {
-function content_582f2a11a4ab73_39708627 (Smarty_Internal_Template $_smarty_tpl) {
+function content_582f2d016ed372_81581012 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,6 @@ function content_582f2a11a4ab73_39708627 (Smarty_Internal_Template $_smarty_tpl)
         <div id="mainContainer" class="container">
 
             <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
-
             <pre><?php echo $_smarty_tpl->tpl_vars['asciiLogo']->value;?>
 </pre>
 

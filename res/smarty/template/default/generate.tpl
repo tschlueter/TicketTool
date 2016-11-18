@@ -5,15 +5,24 @@
 
     <body>
 
-        <pre>
-            {$output}
-        </pre>
+        <div id="mainContainer" class="container">
 
-        <form target="_self" method="get" action="index.php" enctype="multipart/form-data">
+            <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
+            <pre>{$asciiLogo}</pre>
 
-            <input type="submit" value="Back to upload form">
+            <div class="container">
 
-        </form>
+                <pre id="outputConsole">{$consoleOutput}</pre>
+
+                <form target="_self" method="get" action="index.php" enctype="multipart/form-data">
+
+                    <input type="submit" value="Back to upload form">
+
+                </form>
+
+            </div>
+
+        </div>
 
     </body>
 

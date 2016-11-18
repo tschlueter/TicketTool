@@ -18,10 +18,10 @@ body
 
 div.container
 {
+    min-width:                  350px;
     border:                     1px solid #c0c0c0;
     border-radius:              5px;
-    overflow:                   hidden;
-    margin:                     25px auto 25px auto;
+    margin:                     25px auto 0 auto;
     padding:                    25px;
     display:                    inline-block;
     background:                 #ffffff;
@@ -34,7 +34,7 @@ div#mainContainer
 
 img#logo
 {
-    margin:                     25px auto 0 auto;
+    margin:                     0 auto 0 auto;
 }
 
 input#ticketIds
@@ -51,6 +51,7 @@ input#ticketIds
 
 input#xmlFile
 {
+    width:                      300px;
     background:                 #eeeeee;
     color:                      #444444;
     height:                     25px;
@@ -66,4 +67,9 @@ label.formLabel
 pre
 {
     margin:                     0;
+}
+
+pre#outputConsole
+{
+    margin:                     0 0 25px 0;
 }

@@ -8,7 +8,6 @@
         <div id="mainContainer" class="container">
 
             <img id="logo" src="res/image/logo.png" alt="BAHAG TicketTool" title="BAHAG TicketTool">
-
             <pre>{$asciiLogo}</pre>
 
             <div class="container">
