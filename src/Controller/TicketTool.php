@@ -5,18 +5,14 @@
  *
  * Pairing Tickets:
  *
- * TODO ASAP Move BAHAG base url to external settings file!
- *
- * TODO ASAP Refactpr Service_JiraTicketImporter to non-static functionality.
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
- * TODO ASAP QR code 10cm.
  * TODO ASAP Increase ticket title.
+ * TODO ASAP QR code 10cm.
  * TODO ASAP Add SASS for css generation.
  * TODO ASAP Create unit tests.
+ * TODO ASAP Refactpr Service_JiraTicketImporter to non-static functionality.
  *
  * Single tickets:
- *
- * TODO ASAP Own class for WebFrontend - implement templating engine ('Smarty') for phtml files?
  *
  * TODO ASAP Fancy UI for uploading XML (jQuery).
  * TODO ASAP Enable XML upload field in frontend!
@@ -77,20 +73,17 @@ class Controller_TicketTool
      */
     private function _runWebVersion()
     {
-        //Controller_Setting::$DEBUG_ENABLE_LOGS = false;
+        Controller_Setting::$DEBUG_ENABLE_LOGS = true;
 
-        self::DEBUG_LOG('<pre>');
-
-        $params = $this->_parseCredentialsFromSettingsFile();
-        $this->_createAndRunTicketToolService($params, false);
-
-        self::DEBUG_LOG('</pre>');
-/*
         $webFrontendView = new View_WebFrontend();
         $webFrontendView->showUploadForm(
-            ''
+            'Dynamic Smarty output'
         );
-*/
+
+        self::DEBUG_LOG('<pre>');
+        $params = $this->_parseCredentialsFromSettingsFile();
+        $this->_createAndRunTicketToolService($params, false);
+        self::DEBUG_LOG('</pre>');
     }
 
     /**

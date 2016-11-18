@@ -15,7 +15,7 @@ class View_WebFrontend
      */
     public function __construct()
     {
-        $this->_smarty = new Smarty;
+        $this->_smarty = new Smarty();
 
         $this->_smarty->setTemplateDir('res/smarty/template'  );
         $this->_smarty->setCompileDir( 'res/smarty/template_c');
