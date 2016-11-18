@@ -106,7 +106,7 @@ class Service_PdfCreator
         $this->_pdf->Image(
             $imageFileName,
             ($this->_pdf->GetPageWidth()  - $imageSize[0]) / 2,
-            (($this->_pdf->GetPageHeight() / 2) - $imageSize[1]) / 2,
+            Controller_Setting::QR_IMAGE_POSITION_Y,
             $imageSize[0],
             $imageSize[1]
         );
@@ -124,7 +124,7 @@ class Service_PdfCreator
         $titleWidth = $this->_pdf->GetStringWidth($ticketId);
         $this->_pdf->Text(
             ($this->_pdf->GetPageWidth() - $titleWidth) / 2,
-            ($this->_pdf->GetPageHeight() / 2) + Controller_Setting::PDF_OFFSET_TICKET_ID_Y,
+            ($this->_pdf->GetPageHeight() / 2.5) + Controller_Setting::PDF_OFFSET_TICKET_ID_Y,
             $ticketId
         );
     }
@@ -155,7 +155,11 @@ class Service_PdfCreator
     private function _drawTicketType($ticketType)
     {
         $this->_pdf->SetXY(0.0, 0.0);
-        $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_DETAILS);
+        $this->_pdf->SetFont(
+            Controller_Setting::PDF_FONT_FACE, 
+            Controller_Setting::PDF_FONT_DETAILS_STYLE, 
+            Controller_Setting::PDF_FONT_DETAILS_SIZE
+        );
         $this->_pdf->Text(
             Controller_Setting::PDF_TEXT_BORDER_X,
             $this->_pdf->GetPageHeight() - Controller_Setting::PDF_TEXT_BORDER_Y,
@@ -172,7 +176,11 @@ class Service_PdfCreator
     {
         // draw estimation
         $this->_pdf->SetXY(0.0, 0.0);
-        $this->_pdf->SetFont(Controller_Setting::PDF_FONT_FACE, '', Controller_Setting::PDF_FONT_SIZE_DETAILS);
+        $this->_pdf->SetFont(
+            Controller_Setting::PDF_FONT_FACE,
+            Controller_Setting::PDF_FONT_DETAILS_STYLE,
+            Controller_Setting::PDF_FONT_DETAILS_SIZE
+        );
         $estimationWidth = $this->_pdf->GetStringWidth($ticketEstimation);
         $this->_pdf->Text(
             $this->_pdf->GetPageWidth() - Controller_Setting::PDF_TEXT_BORDER_X - $estimationWidth,
