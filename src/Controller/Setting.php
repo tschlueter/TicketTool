@@ -19,7 +19,7 @@ class Controller_Setting
     const SECONDS_PER_HOUR = 3600;
 
     /** The maximum number of characters in the ticket title. */
-    const MAX_TITLE_LENGTH = 120;
+    const MAX_TITLE_LENGTH = 55;
 
     /** The resource path for text files. */
     const PATH_RES_TXT = 'res/txt';
@@ -51,12 +51,12 @@ class Controller_Setting
     /** Font size for 'ticket id' */
     const PDF_FONT_SIZE_ID = 27.5;
     /** Font size for 'ticket title' */
-    const PDF_FONT_SIZE_TITLE = 22.5;
+    const PDF_FONT_SIZE_TITLE = 30.0;
 
     /** Offset x for all texts. */
-    const PDF_TEXT_BORDER_X = 10.0;
+    const PDF_TEXT_BORDER_X = 5.0;
     /** Offset y for all texts. */
-    const PDF_TEXT_BORDER_Y = 10.0;
+    const PDF_TEXT_BORDER_Y = 5.0;
 
     /** Offset x for the rect. */
     const PDF_RECT_BORDER_X = 0.0;
@@ -69,7 +69,7 @@ class Controller_Setting
     const PDF_OFFSET_TICKET_TITLE_Y = 35.0;
 
     /** Height of the ticket title block element. */
-    const PDF_TICKET_TITLE_BLOCK_HEIGHT = 25.0;
+    const PDF_TICKET_TITLE_BLOCK_HEIGHT = 40.0;
 
     /** The debug switch for enabling log output to the frontend. */
     public static $DEBUG_ENABLE_LOGS = true;
