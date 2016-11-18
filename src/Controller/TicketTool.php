@@ -5,11 +5,14 @@
  *
  * Pairing Tickets:
  *
+ * TODO ASAP Move BAHAG base url to external settings file!
+ *
+ * TODO ASAP Refactpr Service_JiraTicketImporter to non-static functionality.
  * TODO ASAP als anregung: kannst du die überschrift noch einen hauch größer machen und die andere schrift noch fett?
  * TODO ASAP QR code 10cm.
- * TODO ASAP Move BAHAG base url to external settings file!
  * TODO ASAP Increase ticket title.
  * TODO ASAP Add SASS for css generation.
+ * TODO ASAP Create unit tests.
  *
  * Single tickets:
  *
@@ -20,6 +23,7 @@
  * TODO ASAP Implement AJAX requests for life console logging.
  * TODO ASAP Add TypeScript for JS generation.
  * TODO ASAP Tool is inoperative if only one single ticket is exported! Fix this!
+ * TODO ASAP Implement TS for javascript tasks.
  * TODO ASAP Reset repository.
  * TODO ASAP Use COMPOSER for loading libs and class autoloading (Symfony component!)
  * TODO ASAP Improve workflow (Enable URL of XMl in frontend etc.)?.
@@ -73,11 +77,20 @@ class Controller_TicketTool
      */
     private function _runWebVersion()
     {
+        //Controller_Setting::$DEBUG_ENABLE_LOGS = false;
+
+        self::DEBUG_LOG('<pre>');
+
         $params = $this->_parseCredentialsFromSettingsFile();
         $this->_createAndRunTicketToolService($params, false);
 
+        self::DEBUG_LOG('</pre>');
+/*
         $webFrontendView = new View_WebFrontend();
-        $webFrontendView->showUploadForm('Output goes here ...');
+        $webFrontendView->showUploadForm(
+            ''
+        );
+*/
     }
 
     /**
@@ -89,6 +102,7 @@ class Controller_TicketTool
         $this->_ticketToolService = new Service_TicketTool(
             $params['user'],
             $params['pass'],
+            $params['jiraBaseUrl'],
             $cliRequest
         );
         $this->_ticketToolService->run();
@@ -111,17 +125,20 @@ class Controller_TicketTool
         $settings     = json_decode($settingsJson);
 
         $credentials  = $settings->credentials;
+        $jira  = $settings->jira;
 
         $user         = $credentials->user;
         $pass         = $credentials->pass;
+        $jiraBaseUrl  = $jira->baseUrl;
 
-        if ($user == null || $pass == null) {
-            die('Please specify "user" and "pass" properties in the json "credentials" object.');
+        if ($user == null || $pass == null || $jiraBaseUrl == null) {
+            die('Invalid config.');
         }
 
         return array(
             'user' => $user,
             'pass' => $pass,
+            'jiraBaseUrl' => $jiraBaseUrl,
         );
     }
 
@@ -144,7 +161,7 @@ class Controller_TicketTool
      */
     public static function DEBUG_LOG($msg = '')
     {
-        if (Controller_Setting::DEBUG_ENABLE_LOGS)
+        if (Controller_Setting::$DEBUG_ENABLE_LOGS)
         {
             echo $msg . "\n";
         }

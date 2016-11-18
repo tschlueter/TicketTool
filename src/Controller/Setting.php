@@ -10,9 +10,6 @@ class Controller_Setting
     /** The version identifier. */
     const VERSION = '1.0.0 2016-11-09 11:14:00';
 
-    /** The base URL of the JIRA service. */
-    const JIRA_BASE_URL = 'https://bdc.bahag.com';
-
     /** The image size for the QR code to create. */
     const QR_IMAGE_SIZE = 8;
     /** The margin offset size for the QR code to create. */
@@ -75,7 +72,7 @@ class Controller_Setting
     const PDF_TICKET_TITLE_BLOCK_HEIGHT = 25.0;
 
     /** The debug switch for enabling log output to the frontend. */
-    const DEBUG_ENABLE_LOGS = true;
+    public static $DEBUG_ENABLE_LOGS = true;
     /** The debug switch for testing the LaTeX implementation. */
     const DEBUG_TEST_LATEX = false;
     /** The debug switch for supersizing all dynamic strings that are printed into the pdf. */

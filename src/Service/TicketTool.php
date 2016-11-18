@@ -16,6 +16,11 @@ class Service_TicketTool
     private $_pass;
 
     /**
+     * @var string The base url of the JIRA ticket system.
+     */
+    private $_jiraBaseUrl;
+
+    /**
      * @var Service_PdfCreator
      */
     private $_pdfExportService;
@@ -23,13 +28,15 @@ class Service_TicketTool
     /**
      * @param string  $user
      * @param string  $pass
+     * @param string  $jiraBaseUrl
      * @param boolean $cli
      */
-    public function __construct($user, $pass, $cli)
+    public function __construct($user, $pass, $jiraBaseUrl, $cli)
     {
-        $this->_user = $user;
-        $this->_pass = $pass;
-        $this->_cli  = $cli;
+        $this->_user        = $user;
+        $this->_pass        = $pass;
+        $this->_jiraBaseUrl = $jiraBaseUrl;
+        $this->_cli         = $cli;
     }
 
     /**
@@ -98,7 +105,8 @@ class Service_TicketTool
         $ticket = Service_JiraTicketImporter::get(
             $ticketId,
             $this->_user,
-            $this->_pass
+            $this->_pass,
+            $this->_jiraBaseUrl
         );
         Controller_TicketTool::DEBUG_LOG(
             'Picked JIRA ticket id [' . $ticket->getId()         . ']'

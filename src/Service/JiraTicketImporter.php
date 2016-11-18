@@ -11,13 +11,14 @@ class Service_JiraTicketImporter
      * @param string $ticketId
      * @param string $user
      * @param string $pass
+     * @param string $jiraBaseUrl
      *
      * @return Model_JiraTicket
      */
-    public static function get($ticketId, $user, $pass)
+    public static function get($ticketId, $user, $pass, $jiraBaseUrl)
     {
         $response = Service_Curl::get(
-            Controller_Setting::JIRA_BASE_URL . '/rest/api/latest/issue/' . $ticketId,
+            $jiraBaseUrl . 'rest/api/latest/issue/' . $ticketId,
             $user,
             $pass
         );
