@@ -100,6 +100,6 @@
     window.onload = function()
     {
         //setup3Dtransitions();
-        initWowEffects();
+        //initWowEffects();
         showPanelDelayed();
     };
